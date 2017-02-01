@@ -1,0 +1,51 @@
+<h4>{{I18n 'bridges-discovery'}}</h4>
+
+{{I18n 'bridges-choose'}}
+
+<table class="table table-hover table-condensed">
+	<thead>
+	<tr>
+		<th>{{I18n 'bridges-column-id'}}</th>
+		<th>{{I18n 'bridges-column-ip'}}</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	{{#each bridges}}
+		<tr>
+			<td>{{id}}</td>
+			<td>{{ip}}</td>
+			<td>
+				<button class="btn btn-primary" id="discovered-bridge-button-{{id}}">Connect</button>
+				<script>
+					$('#discovered-bridge-button-{{id}}').click(function() {
+						// try to log in again with the selected bridge/ip
+						let tempClient = new huE_common.huejay.Client({
+							host: '{{ip}}',
+							username: huE_common.config.get(CONFIG_KEYS.userName)
+						});
+
+						tempClient.bridge.isAuthenticated()
+							.then(() => {
+								// the user exists on that bridge
+								huE_common.config.set(CONFIG_KEYS.bridgeIp, '{{ip}}');
+								huE_common.config.set(CONFIG_KEYS.bridgeId, '{{id}}');
+
+								huE_common.huejayClient = tempClient;
+
+								huE_common.switchToMainContentElement('tabs');
+								$('.nav-tabs a:first').tab('show');
+							})
+							.catch(error => {
+								// not authorized with available credentials;
+								// create new user
+								huE_bridges.pingBridgeAndInitiatePushlink('{{ip}}', '{{id}}');
+							});
+						}
+					);
+				</script>
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>

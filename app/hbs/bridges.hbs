@@ -1,0 +1,177 @@
+<!-- Connected Bridge -->
+<h4>{{I18n 'bridges-connected'}}</h4>
+<table class="table table-condensed table-hover table-bordered">
+    <tr>
+        <td colspan="2" class="bg-info">{{I18n 'bridges-connected-column-general'}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-id'}}</td>
+        <td>{{connectedBridge.id}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-name'}}</td>
+        <td>{{connectedBridge.name}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-modelid'}}</td>
+        <td>{{connectedBridge.modelId}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-factorynew'}}</td>
+        <td>{{connectedBridge.factoryNew}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-replacesbridgeid'}}</td>
+        <td>{{connectedBridge.replacesBridgeId}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-softwareversion'}}</td>
+        <td>{{connectedBridge.softwareVersion}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-apiversion'}}</td>
+        <td>{{connectedBridge.apiVersion}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-zigbeeChannel'}}</td>
+        <td>{{connectedBridge.zigbeeChannel}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-macAddress'}}</td>
+        <td>{{connectedBridge.macAddress}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-ipAddress'}}</td>
+        <td>{{connectedBridge.ipAddress}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-dhcpenabled'}}</td>
+        <td>{{connectedBridge.dhcpEnabled}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-netmask'}}</td>
+        <td>{{connectedBridge.netmask}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-gateway'}}</td>
+        <td>{{connectedBridge.gateway}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-proxyaddress'}}</td>
+        <td>{{connectedBridge.proxyAddress}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-proxyport'}}</td>
+        <td>{{connectedBridge.proxyPort}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-utctime'}}</td>
+        <td>{{connectedBridge.utcTime}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-timezone'}}</td>
+        <td>{{connectedBridge.timeZone}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-localtime'}}</td>
+        <td>{{connectedBridge.localTime}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-portalservicesenabled'}}</td>
+        <td>{{connectedBridge.portalServicesEnabled}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-portalconnected'}}</td>
+        <td>{{connectedBridge.portalConnected}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-linkbuttonenabled'}}</td>
+        <td>{{connectedBridge.linkButtonEnabled}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-touchlinkenabled'}}</td>
+        <td>{{connectedBridge.touchlinkEnabled}}</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="bg-info">{{I18n 'bridges-connected-column-model'}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-model-id'}}</td>
+        <td>{{connectedBridge.model.id}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-model-manufacturer'}}</td>
+        <td>{{connectedBridge.model.manufacturer}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'bridges-connected-column-model-name'}}</td>
+        <td>{{connectedBridge.model.name}}</td>
+    </tr>
+</table>
+
+<!-- Edit Button -->
+<button id="edit-button-bridge-{{connectedBridge.id}}" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;{{I18n 'bridges-edit'}}</button>
+<script>
+    $('#edit-button-bridge-{{connectedBridge.id}}').on('click', function() {
+        $('#bridge-edit-modal-id').val('{{connectedBridge.id}}');
+        $('#bridge-edit-modal-name').val(huE_common.htmlDecode('{{connectedBridge.name}}'));
+
+        $('#bridge-edit-modal').modal('show');
+    });
+</script>
+
+{{#if quickActions.[0]}}
+
+<!-- Other Bridges -->
+<h4>{{I18n 'bridges-other'}}</h4>
+<table class="table table-hover">
+	<thead>
+	<tr>
+		<th>{{I18n 'bridges-other-column-id'}}</th>
+		<th>{{I18n 'bridges-other-column-ip'}}</th>
+	</tr>
+	</thead>
+	<tbody>
+	{{#each otherBridges}}
+		<tr>
+			<td>{{id}}</td>
+			<td>{{ip}}</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+{{/if}}
+
+<!-- Edit Modal -->
+<div class="modal fade" id="bridge-edit-modal" tabindex="-1" role="dialog" aria-labelledby="bridge-edit-modal-label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-primary">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="bridge-edit-modal-label">{{I18n 'bridges-edit-modal-label'}}</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<input id="bridge-edit-modal-id" type="hidden">
+					<div class="form-group">
+						<label for="bridge-edit-modal-name" class="control-label">{{I18n 'bridges-edit-modal-name'}}</label>
+						<input type="text" class="form-control" id="bridge-edit-modal-name">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{{I18n 'bridges-edit-modal-close'}}</button>
+				<button type="button" class="btn btn-primary text-left" id="bridge-edit-modal-save" data-dismiss="modal">{{I18n 'bridges-edit-modal-save'}}</button>
+				<script>
+					$('#bridge-edit-modal-save').click(function() {
+						let id = $('#bridge-edit-modal-id').val();
+						let name = $('#bridge-edit-modal-name').val();
+
+						huE_bridges.save({id: id,
+										  name: name});
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>

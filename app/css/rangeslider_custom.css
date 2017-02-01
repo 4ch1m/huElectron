@@ -1,0 +1,9 @@
+.rangeslider--horizontal {
+	margin-top: 10px;
+	height: 20px;
+	width: 100%;
+}
+
+.rangeslider__fill {
+	background: #34A7C1;
+}

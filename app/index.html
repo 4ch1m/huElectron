@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>huElectron</title>
+		<!-- *** -->
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="../node_modules/@claviska/jquery-minicolors/jquery.minicolors.css">
+		<link rel="stylesheet" href="../node_modules/rangeslider.js/dist/rangeslider.css">
+		<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+		<!-- *** -->
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/onoffswitch.css">
+		<link rel="stylesheet" href="css/bootstrap_custom.css">
+		<link rel="stylesheet" href="css/minicolors_custom.css">
+		<link rel="stylesheet" href="css/rangeslider_custom.css">
+		<!-- *** -->
+		<script>
+			window.$ = window.jQuery = require('../node_modules/jquery/dist/jquery.js');
+
+			require('../node_modules/jquery.i18n/src/jquery.i18n.js');
+			require('../node_modules/jquery.i18n/src/jquery.i18n.messagestore.js');
+			require('../node_modules/jquery.i18n/src/jquery.i18n.fallbacks.js');
+			require('../node_modules/jquery.i18n/src/jquery.i18n.emitter.js');
+			require('../node_modules/jquery.i18n/src/jquery.i18n.language.js');
+			require('../node_modules/jquery.i18n/src/jquery.i18n.parser.js');
+
+			$.i18n().load( {
+				en: './i18n/en.json'
+			} );
+		</script>
+		<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="../node_modules/@claviska/jquery-minicolors/jquery.minicolors.js"></script>
+		<script src="../node_modules/rangeslider.js/dist/rangeslider.js"></script>
+		<script src="../node_modules/handlebars/dist/handlebars.js"></script>
+		<!-- *** -->
+		<script src="js/constants.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/initialize.js"></script>
+		<!-- *** -->
+		<script src="js/quickactions.js"></script>
+		<script src="js/bridges.js"></script>
+		<script src="js/users.js"></script>
+		<script src="js/lights.js"></script>
+		<script src="js/groups.js"></script>
+		<script src="js/sensors.js"></script>
+		<!-- *** -->
+		<script>
+			$(document).ready(function() {
+				let tabItems = new Map()
+					.set('quickactions', {label: $.i18n('tabs-quickactions'), iconClass: 'fa fa-play',             on_show: huE_quickActions.get})
+					.set('bridges',      {label: $.i18n('tabs-bridges'),      iconClass: 'fa fa-home',             on_show: huE_bridges.get     })
+					.set('users',        {label: $.i18n('tabs-users'),        iconClass: 'fa fa-user',             on_show: huE_users.get       })
+					.set('lights',       {label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb-o',      on_show: huE_lights.get      })
+					.set('groups',       {label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: huE_groups.get      })
+					.set('sensors',      {label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: huE_sensors.get     });
+
+				let navTabs = $('.nav-tabs');
+				let tabContent = $('.tab-content');
+
+				for (let key of tabItems.keys()) {
+					let navLi = '';
+					navLi += '<li>';
+					navLi += '<a id="' + key + '" data-toggle="tab" href="#' + key + '-tab">';
+					navLi += '<strong><i class="' + tabItems.get(key).iconClass + '"></i></strong>';
+					navLi += '&nbsp;' + tabItems.get(key).label;
+					navLi += '</a>';
+					navLi += '</li>';
+
+					let navDiv = '';
+					navDiv += '<div id="' + key + '-tab" class="tab-pane fade in active">';
+					navDiv += '<br>';
+					navDiv += '<div id="' + key + '-tab-content" class="container">';
+					navDiv += '</div>';
+					navDiv += '</div>';
+
+					navTabs.append(navLi);
+					tabContent.append(navDiv);
+				}
+
+				$('a[data-toggle="tab"]').on('shown.bs.tab', function (element) {
+					let target = $(element.target).attr('id');
+					let tabItem = tabItems.get(target);
+
+					if (tabItem !== undefined) {
+					    tabItem.on_show();
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<!-- Bridge Discovery -->
+		<div id="main-content-bridge-discovery" style="display: none"></div>
+		<!-- Pushlink -->
+		<div id="main-content-pushlink" style="display: none"></div>
+		<!-- Main App with Tabs -->
+		<div id="main-content-tabs" style="display: none">
+			<nav class="navbar-default navbar-fixed-top">
+				<div class="container">
+					<ul class="nav nav-tabs"></ul>
+				</div>
+			</nav>
+			<div class="tab-content"></div>
+		</div>
+		<!-- Error Modal -->
+		<div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="error-modal-label">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header modal-header-danger">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="error-modal-label"></h4>
+					</div>
+					<div id="error-modal-message" class="modal-body"></div>
+					<div class="modal-footer">
+						<button id="error-modal-button" type="button" class="btn btn-default" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Success Modal -->
+		<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="success-modal-label">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header modal-header-success">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="success-modal-label"></h4>
+					</div>
+					<div id="success-modal-message" class="modal-body"></div>
+					<div class="modal-footer">
+						<button id="success-modal-button" type="button" class="btn btn-default" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Confirmation Modal -->
+		<div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmation-modal-label">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header modal-header-warning">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="confirmation-modal-label"></h4>
+					</div>
+					<div id="confirmation-modal-message" class="modal-body"></div>
+					<div class="modal-footer">
+						<button id="confirmation-modal-button-yes" type="button" class="btn btn-primary" data-dismiss="modal"></button>
+						<button id="confirmation-modal-button-no" type="button" class="btn btn-default" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

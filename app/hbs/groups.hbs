@@ -1,0 +1,246 @@
+<div class="panel-group" id="groups-accordion" role="tablist" aria-multiselectable="false">
+
+{{#each groups}}
+
+	<div class="panel panel-default">
+
+		<!-- Group Item Collapsed -->
+		<div class="collapse-panel-heading panel-heading" role="tab" id="heading-group-{{id}}">
+			<h4 class="panel-title">
+				<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#groups-accordion" href="#collapse-group-{{id}}" aria-expanded="false" aria-controls="collapse-group-{{id}}">
+					{{#getGroupIcon type class}}{{/getGroupIcon}}{{name}} <small>({{I18n 'groups-id'}}: {{id}})</small>
+				</a>
+			</h4>
+		</div>
+
+		<!-- Group Item Expanded -->
+		<div id="collapse-group-{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-group-{{id}}">
+			<div class="panel-body">
+
+				<!-- Actions -->
+				{{> basic_actions
+						huE_target='group'
+						huE_methodHolder='huE_groups'
+						id=id
+						name=name
+						on=on
+						brightness=brightness
+						xy=xy}}
+
+				<!-- Edit -->
+				<button id="edit-button-group-{{id}}" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-edit'}}</button>
+				<script>
+					$('#edit-button-group-{{id}}').click(function() {
+					    let usedLightIds = [];
+						{{#each lightIds}}
+						usedLightIds.push('{{this}}');
+						{{/each}}
+
+						$('#group-edit-modal-label').text('{{I18n 'groups-edit-modal-label'}}');
+						$('#group-edit-modal-id').val('{{id}}');
+						$('#group-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
+						$('#group-edit-modal-type').val('{{type}}');
+						$('#group-edit-modal-class').val('{{class}}');
+						$('#group-edit-modal-class').prop('disabled', !('{{type}}' == GROUP_TYPES.room));
+
+						$('#group-edit-modal-available-lights :input').each(function() {
+						    let lightIdIsPartOfGroup = usedLightIds.indexOf($(this).val()) != -1;
+							$(this).attr("checked", lightIdIsPartOfGroup);
+						});
+
+						$('#group-edit-modal').modal('show');
+					});
+				</script>
+
+				<br>
+
+				<!-- Delete -->
+				<button id="delete-button-group-{{id}}" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-delete'}}</button>
+				<script>
+					$('#delete-button-group-{{id}}').click(function() {
+					    let confirmationCallback = function() { huE_groups.deleteById('{{id}}') };
+					    huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-group'}}', confirmationCallback);
+					});
+				</script>
+
+				<br>
+
+				<!-- Details -->
+				<button id="details-button-group-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed" data-toggle="collapse" data-target="#details-group-{{id}}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-details'}}</button>
+
+				<!-- Details Expanded -->
+				<div id="details-group-{{id}}" class="collapse">
+
+					<h4><i>{{I18n 'groups-general'}}</i></h4>
+					<table class="table table-condensed table-hover table-bordered">
+						<tr>
+							<td>{{I18n 'groups-column-id'}}</td>
+							<td>{{id}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-name'}}</td>
+							<td>{{name}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-type'}}</td>
+							<td>{{type}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-class'}}</td>
+							<td>{{class}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-lightids'}}</td>
+							<td>{{#each lightIds}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}</td>
+						</tr>
+						{{#if modelId}}
+						<tr>
+							<td>{{I18n 'groups-column-modelid'}}</td>
+							<td>{{modelId}}</td>
+						</tr>
+							<tr>
+								<td>{{I18n 'groups-column-uniqueid'}}</td>
+								<td>{{uniqueId}}</td>
+							</tr>
+						{{/if}}
+					</table>
+
+					<h4><i>{{I18n 'groups-state'}}</i></h4>
+					<table class="table table-condensed table-hover table-bordered">
+						<tr>
+							<td>{{I18n 'groups-column-anyon'}}</td>
+							<td>{{anyOn}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-allon'}}</td>
+							<td>{{allOn}}</td>
+						</tr>
+					</table>
+
+					{{#if modelId}}
+					<h4><i>{{I18n 'groups-model'}}</i></h4>
+					<table class="table table-condensed table-hover table-bordered">
+						<tr>
+							<td>{{I18n 'groups-column-id'}}</td>
+							<td>{{model.id}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-manufacturer'}}</td>
+							<td>{{model.manufacturer}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-name'}}</td>
+							<td>{{model.name}}</td>
+						</tr>
+						<tr>
+							<td>{{I18n 'groups-column-type'}}</td>
+							<td>{{model.type}}</td>
+						</tr>
+					</table>
+					{{/if}}
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+{{/each}}
+
+	<!-- New Group -->
+	<div class="panel">
+		<button id="groups-add-new" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-add-new'}}</button>
+		<script>
+			$('#groups-add-new').click(function() {
+				$('#group-edit-modal-label').text('{{I18n 'groups-edit-modal-label-new'}}');
+				$('#group-edit-modal-id').val('');
+				$('#group-edit-modal-name').val('{{I18n 'groups-edit-modal-name-default'}}');
+				$('#group-edit-modal-available-lights :input').prop('checked', false);
+				$('#group-edit-modal').modal('show');
+			});
+		</script>
+	</div>
+
+</div>
+
+<!-- Edit/New Group Modal -->
+<div class="modal fade" id="group-edit-modal" tabindex="-1" role="dialog" aria-labelledby="group-edit-modal-label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-primary">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="group-edit-modal-label"></h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<input id="group-edit-modal-id" type="hidden">
+					<div class="form-group">
+						<label for="group-edit-modal-name" class="control-label">{{I18n 'groups-edit-modal-name'}}</label>
+						<input type="text" class="form-control" id="group-edit-modal-name">
+					</div>
+					<div class="form-group">
+						<label for="group-edit-modal-type">{{I18n 'groups-edit-modal-type'}}</label>
+						<select class="form-control" id="group-edit-modal-type">
+							{{#each types}}
+								<option>{{this}}</option>
+							{{/each}}
+						</select>
+						<script>
+							$('#group-edit-modal-type').change(function() {
+								let roomSelected = $('#group-edit-modal-type').val() == GROUP_TYPES.room;
+								$('#group-edit-modal-class').prop('disabled', !roomSelected);
+							});
+						</script>
+					</div>
+
+					<div class="form-group">
+						<label for="group-edit-modal-class">{{I18n 'groups-edit-modal-class'}}</label>
+						<select class="form-control" id="group-edit-modal-class">
+							{{#each classes}}
+								<option>{{this}}</option>
+							{{/each}}
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="group-edit-modal-available-lights">{{I18n 'groups-edit-modal-available-lights'}}</label>
+						<div class="panel panel-default" id="group-edit-modal-available-lights">
+							<div class="panel-body">
+								{{#each availableLights}}
+									<div class="checkbox">
+										<label><input type="checkbox" value="{{this.id}}">{{this.name}}</label>
+									</div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{{I18n 'groups-edit-modal-close'}}</button>
+				<button type="button" class="btn btn-primary text-left" id="group-edit-modal-save" data-dismiss="modal">{{I18n 'groups-edit-modal-save'}}</button>
+				<script>
+					$('#group-edit-modal-save').click(function() {
+						let id = $('#group-edit-modal-id').val();
+						let name = $('#group-edit-modal-name').val();
+						let type = $('#group-edit-modal-type').val();
+						let clazz = $('#group-edit-modal-class').val();
+						let lightIds = [];
+
+						$('#group-edit-modal-available-lights :input').each(function() {
+							if ($(this).prop('checked')) {
+								lightIds.push($(this).val());
+							}
+						});
+
+						huE_groups.save({id: id,
+										 name: name,
+										 type: type,
+										 class: clazz,
+										 lightIds: lightIds});
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+{
+  "name": "huelectron",
+  "productName": "huElectron",
+  "version": "0.1.0",
+  "description": "An open-source and cross-platform app for the 'Hue Lighting System' from Philips",
+  "license": "MIT",
+  "repository": "4ch1m/huElectron",
+  "main": "app/js/index.js",
+  "author": {
+    "name": "Achim Seufert",
+    "email": "contact@huelectron.achimonline.de",
+    "url": "huelectron.achimonline.de"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "files": [
+    "app/**/*"
+  ],
+  "keywords": [
+    "hue",
+    "Philips",
+    "electron",
+    "app",
+    "desktop"
+  ],
+  "dependencies": {
+    "@claviska/jquery-minicolors": "^2.2.4",
+    "bootstrap": "^3.3.7",
+    "electron-config": "^0.2.1",
+    "electron-debug": "^1.1.0",
+    "electron-window-state": "^4.0.1",
+    "font-awesome": "github:fortawesome/Font-Awesome#4722e3ea4c00e5292b7130a167e1ec34f5f6201c",
+    "handlebars": "^4.0.6",
+    "hue-hacking-node": "0.0.11",
+    "huejay": "^1.5.0",
+    "jquery": "^3.1.1",
+    "jquery.i18n": "github:wikimedia/jquery.i18n#b5153ed1b16024d57479ba9655f4bfe40fc0e229",
+    "rangeslider.js": "^2.3.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron": "^1.3.3",
+    "electron-packager": "^8.0.0"
+  }
+}

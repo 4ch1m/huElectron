@@ -1,0 +1,80 @@
+<h4>{{I18n 'quickactions-alllights'}}</h4>
+
+<div>
+	{{> basic_actions
+			huE_target='quickactions-group'
+			huE_methodHolder='huE_groups'
+			id=group.id
+			on=group.anyOn
+			brightness=group.brightness
+			xy=group.xy}}
+</div>
+
+{{#if quickActions.[0]}}
+
+<h4>{{I18n 'quickactions-saved'}}</h4>
+
+<table class="table table-hover">
+	<tbody>
+	{{#each quickActions}}
+		<tr id="quickaction-row-{{id}}">
+			<!-- Execute Button -->
+			<td class="text-left">
+				<button id="quickaction-execute-{{id}}" class="btn btn-default btn-success"><span class="glyphicon glyphicon-play"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-execute'}}</button>
+				<script>
+					$('#quickaction-execute-{{id}}').click(function() {
+						huE_quickActions.execute('{{target}}', '{{targetId}}', '{{on}}', '{{brightness}}', '{{color}}');
+					});
+				</script>
+			</td>
+			<!-- Name -->
+			<td class="text-left">
+				<strong>{{name}}</strong>
+			</td>
+			<!-- ON/OFF Switch -->
+			<td class="text-center">
+				{{#ifCond on true}}
+					<i class="fa fa-toggle-on" aria-hidden="true"></i>
+				{{/ifCond}}
+				{{#ifCond on false}}
+					<i class="fa fa-toggle-off" aria-hidden="true"></i>
+				{{/ifCond}}
+			</td>
+			<!-- Brightness -->
+			<td class="text-center">
+				<i class="fa fa-sun-o" aria-hidden="true"></i>
+				{{getBrightnessInPercent brightness}} %
+			</td>
+			<!-- Light Bulb(s) -->
+			<td class="text-center">
+				{{#ifCond target 'light'}}
+					<i class="fa fa-lightbulb-o" style="font-size:24px;color:{{color}}"></i>
+				{{/ifCond}}
+				{{#ifCond target 'group'}}
+					<i class="fa fa-lightbulb-o" style="font-size:16px;color:{{color}}"></i>
+					<i class="fa fa-lightbulb-o" style="font-size:20px;color:{{color}}"></i>
+					<i class="fa fa-lightbulb-o" style="font-size:24px;color:{{color}}"></i>
+					<i class="fa fa-lightbulb-o" style="font-size:20px;color:{{color}}"></i>
+					<i class="fa fa-lightbulb-o" style="font-size:16px;color:{{color}}"></i>
+				{{/ifCond}}
+			</td>
+			<!-- Delete Button -->
+			<td class="text-right">
+				<button id="quickaction-delete-{{id}}" class="btn btn-default btn-danger"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-delete'}}</button>
+				<script>
+					$('#quickaction-delete-{{id}}').click(function() {
+						huE_quickActions.deleteById('{{id}}');
+
+						let row = $('#quickaction-row-{{id}}');
+						row.hide('slow', function() {
+							row.remove();
+						});
+					});
+				</script>
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+
+{{/if}}

@@ -1,0 +1,115 @@
+<div class="well">
+	<div class="row">
+		<!-- ON/OFF Switch -->
+		<div class="col-md-3">
+			<div class="onoffswitch center-block">
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-{{huE_target}}-{{id}}" {{#ifCond on true}}checked{{/ifCond}}>
+				<label class="onoffswitch-label" for="onoffswitch-{{huE_target}}-{{id}}">
+					<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-switch"></span>
+				</label>
+				<script>
+					$('#onoffswitch-{{huE_target}}-{{id}}').change(function() {
+						{{huE_methodHolder}}.switchOnOff({{id}}, $(this).is(':checked'));
+					});
+				</script>
+			</div>
+		</div>
+		<!-- Brightness -->
+		<div class="col-md-3">
+			<div class="center-block">
+				<input id="brightness-{{huE_target}}-{{id}}" type="range" min="0" max="254" step="1" value="{{brightness}}" />
+				<script>
+					$('#brightness-{{huE_target}}-{{id}}').rangeslider({polyfill: false}).on('change', function() {
+						{{huE_methodHolder}}.changeBrightness({{id}}, $(this).val());
+					});
+				</script>
+			</div>
+		</div>
+		<!-- Color-Picker -->
+		<div class="col-md-3">
+			<div class="text-center">
+				<div class="form-group">
+					<div class="minicolors minicolors-theme-bootstrap minicolors-position-bottom minicolors-position-left minicolors-focus">
+						<input id="colorpicker-{{huE_target}}-{{id}}" class="form-control minicolors-input"
+							   data-position="bottom left"
+							   size="7"
+							   type="text">
+					</div>
+				</div>
+				<script>
+					$(function () {
+						let hexColor = huE_common.hueHacking.colors.CIE1931ToHex({{xy.[0]}}, {{xy.[1]}}, {{brightness}});
+
+						$('#colorpicker-{{huE_target}}-{{id}}').minicolors({
+							change: function(value, opacity) {
+								{{huE_methodHolder}}.changeColor({{id}}, value);
+							},
+							defaultValue: hexColor
+						});
+					});
+				</script>
+			</div>
+		</div>
+		<!-- QuickAction Button -->
+		{{#ifNotCond huE_target 'quickactions-group'}}
+		<div class="col-md-3">
+			<div class="text-center">
+				<button id="favourite-button-{{huE_target}}-{{id}}" type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-save" aria-hidden="true"></span> {{I18n 'quickactions-save'}}
+				</button>
+				<script>
+					$('#favourite-button-{{huE_target}}-{{id}}').click(function() {
+						$('#quickaction-modal-{{huE_target}}-{{id}}-name').val('{{name}}');
+						$('#quickaction-modal-{{huE_target}}-{{id}}').modal('show');
+					});
+				</script>
+				<!-- QuickAction Modal -->
+				<div class="modal fade" id="quickaction-modal-{{huE_target}}-{{id}}" tabindex="-1" role="dialog" aria-labelledby="quickaction-modal-{{huE_target}}-{{id}}-label">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header modal-header-info">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="quickaction-modal-{{huE_target}}-{{id}}-label">{{I18n 'quickactions-save-modal-title'}}</h4>
+							</div>
+							<div class="modal-body">
+								<form id="quickaction-modal-{{huE_target}}-{{id}}-form">
+									<div class="form-group form-inline">
+										<label for="quickaction-modal-{{huE_target}}-{{id}}-name" class="control-label">{{I18n 'quickactions-save-modal-name'}}</label>
+										<input type="text" class="form-control" id="quickaction-modal-{{huE_target}}-{{id}}-name">
+										<script>
+											$('#quickaction-modal-{{huE_target}}-{{id}}-name').on('change paste keyup', function() {
+												$('#quickaction-modal-{{huE_target}}-{{id}}-button').prop('disabled', !$(this).val());
+											});
+										</script>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button id="quickaction-modal-{{huE_target}}-{{id}}-button" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+								<script>
+									$('#quickaction-modal-{{huE_target}}-{{id}}-button').click(function(){
+										$('#quickaction-modal-{{huE_target}}-{{id}}-form').submit();
+									});
+
+									$('#quickaction-modal-{{huE_target}}-{{id}}').submit(function() {
+										let name = $('#quickaction-modal-{{huE_target}}-{{id}}-name').val();
+										let target = '{{huE_target}}';
+										let targetId = '{{id}}';
+										let on = $('#onoffswitch-{{huE_target}}-{{id}}').is(':checked');
+										let brightness = $('#brightness-{{huE_target}}-{{id}}').val();
+										let color = $('#colorpicker-{{huE_target}}-{{id}}').val();
+
+										huE_quickActions.save(name, target, targetId, on, brightness, color);
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/ifNotCond}}
+	</div>
+</div>

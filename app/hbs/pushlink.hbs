@@ -1,0 +1,25 @@
+<h4>{{I18n 'pushlink-authentication'}}</h4>
+
+<div class="row">
+	<div class="col-md-6">
+		{{I18n 'pushlink-description-1'}}<br>
+		{{I18n 'pushlink-description-2'}}<br>
+		<br>
+		<div class="text-center">
+			<button class="btn btn-primary" id="pushlink-button">{{I18n 'pushlink-authenticate'}}</button>
+			<script>
+				$('#pushlink-button').click(function() {
+					huE_bridges.createUser('{{bridgeIp}}', '{{bridgeId}}');
+				});
+			</script>
+		</div>
+		<br>
+		<div class="alert alert-info">
+			<span class="label label-info">{{I18n 'info'}}</span><br>
+			{{I18n 'pushlink-description-3'}}
+		</div>
+	</div>
+	<div class="col-md-6 text-center">
+		{{#getPushlinkIcon modelId}}{{/getPushlinkIcon}}
+	</div>
+</div>
