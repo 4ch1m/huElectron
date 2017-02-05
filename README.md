@@ -47,7 +47,7 @@ __huElectron__ is still at an early development stage; the following features wi
 * enhance sensor-management (type, virtual sensor creation, etc.)
 
 Oh, and although I've tried to make the app look somewhat decent by extensively using [Bootstrap](https://getbootstrap.com), of course there's always room for improvement/beautification.
-So any help/contribution from web-design-wizards is highly welcome. :simple_smile:
+So any help/contribution from web-design-wizards is highly welcome. :smiley:
 
 ## Binaries
 

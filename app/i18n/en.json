@@ -151,7 +151,7 @@
   "error-label-general": "Ooops, something went wrong.",
   "error-msg-authentication-failed": "Authentication (using the the stored credentials) failed. Please select your bridge again.",
   "error-msg-credentials-dont-match": "The stored bridge-id doesn't match with the one retrieved. Please select your bridge again.",
-  "error-msg-ping-failed": "Contacting the bridge failded. Please select your bridge again.",
+  "error-msg-ping-failed": "Contacting the bridge failed. Please select your bridge again.",
   "error-msg-pushlink-failed": "Creating a new bridge-user failed. Please ensure you pushed the button and your bridge and then click the authenticate-button within about 30 seconds.",
   "error-msg-bridge-discovery-failed": "Bridge discovery failed. No bridges found. Please try again.",
 

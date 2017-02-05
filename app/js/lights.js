@@ -35,7 +35,6 @@ let huE_lights = {
 			})
 			.catch(error => {
 				huE_common.showError($.i18n('error-label-general'), error.message);
-
 			});
 	},
 

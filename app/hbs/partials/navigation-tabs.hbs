@@ -1,0 +1,27 @@
+<nav class="navbar-default navbar-fixed-top">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            {{#each items}}
+                <li>
+                    <a id="{{id}}" data-toggle="tab" href="#{{id}}-tab">
+                        <strong><i class="{{iconClass}}"></i></strong>&nbsp;{{label}}
+                    </a>
+                    <script>
+                        $('#{{id}}').on('shown.bs.tab', function() {
+                            {{on_show}}
+                        });
+                    </script>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</nav>
+
+<div class="tab-content">
+    {{#each items}}
+        <div id="{{id}}-tab" class="tab-pane fade in active">
+            <br>
+            <div id="{{id}}-tab-content" class="container"></div>
+        </div>
+    {{/each}}
+</div>

@@ -47,45 +47,16 @@
 		<!-- *** -->
 		<script>
 			$(document).ready(function() {
-				let tabItems = new Map()
-					.set('quickactions', {label: $.i18n('tabs-quickactions'), iconClass: 'fa fa-play',             on_show: huE_quickActions.get})
-					.set('bridges',      {label: $.i18n('tabs-bridges'),      iconClass: 'fa fa-home',             on_show: huE_bridges.get     })
-					.set('users',        {label: $.i18n('tabs-users'),        iconClass: 'fa fa-user',             on_show: huE_users.get       })
-					.set('lights',       {label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb-o',      on_show: huE_lights.get      })
-					.set('groups',       {label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: huE_groups.get      })
-					.set('sensors',      {label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: huE_sensors.get     });
+				let tabItems = [
+					{id: 'quickactions', label: $.i18n('tabs-quickactions'), iconClass: 'fa fa-play',             on_show: 'huE_quickActions.get()'},
+			        {id: 'bridges',      label: $.i18n('tabs-bridges'),      iconClass: 'fa fa-home',             on_show: 'huE_bridges.get()'     },
+			        {id: 'users',        label: $.i18n('tabs-users'),        iconClass: 'fa fa-user',             on_show: 'huE_users.get()'       },
+			        {id: 'lights',       label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb-o',      on_show: 'huE_lights.get()'      },
+			        {id: 'groups',       label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: 'huE_groups.get()'      },
+			        {id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     }
+				];
 
-				let navTabs = $('.nav-tabs');
-				let tabContent = $('.tab-content');
-
-				for (let key of tabItems.keys()) {
-					let navLi = '';
-					navLi += '<li>';
-					navLi += '<a id="' + key + '" data-toggle="tab" href="#' + key + '-tab">';
-					navLi += '<strong><i class="' + tabItems.get(key).iconClass + '"></i></strong>';
-					navLi += '&nbsp;' + tabItems.get(key).label;
-					navLi += '</a>';
-					navLi += '</li>';
-
-					let navDiv = '';
-					navDiv += '<div id="' + key + '-tab" class="tab-pane fade in active">';
-					navDiv += '<br>';
-					navDiv += '<div id="' + key + '-tab-content" class="container">';
-					navDiv += '</div>';
-					navDiv += '</div>';
-
-					navTabs.append(navLi);
-					tabContent.append(navDiv);
-				}
-
-				$('a[data-toggle="tab"]').on('shown.bs.tab', function (element) {
-					let target = $(element.target).attr('id');
-					let tabItem = tabItems.get(target);
-
-					if (tabItem !== undefined) {
-					    tabItem.on_show();
-					}
-				});
+                $('#main-content-tabs').html(Handlebars.compile(Handlebars.partials.navigation_tabs)({items: tabItems}));
 			});
 		</script>
 	</head>
@@ -95,14 +66,7 @@
 		<!-- Pushlink -->
 		<div id="main-content-pushlink" style="display: none"></div>
 		<!-- Main App with Tabs -->
-		<div id="main-content-tabs" style="display: none">
-			<nav class="navbar-default navbar-fixed-top">
-				<div class="container">
-					<ul class="nav nav-tabs"></ul>
-				</div>
-			</nav>
-			<div class="tab-content"></div>
-		</div>
+		<div id="main-content-tabs" style="display: none"></div>
 		<!-- Error Modal -->
 		<div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="error-modal-label">
 			<div class="modal-dialog" role="document">

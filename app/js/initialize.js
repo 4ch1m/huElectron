@@ -84,6 +84,10 @@
         Handlebars.registerPartial('icon_room', data);
     }, 'html');
 
+    $.get('hbs/partials/navigation-tabs.hbs', function (data) {
+        Handlebars.registerPartial('navigation_tabs', data);
+    }, 'html');
+
 	$.get('hbs/partials/spinner.hbs', function (data) {
 		Handlebars.registerPartial('spinner', data);
 	}, 'html');
