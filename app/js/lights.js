@@ -81,7 +81,7 @@ let huE_lights = {
 	applyQuickAction(quickAction) {
 		huE_common.huejayClient.lights.getById(quickAction.id)
 			.then(light => {
-				light.on = quickAction.on;
+				light.on = JSON.parse(quickAction.on.toLowerCase());
 				light.brightness = quickAction.brightness;
 				light.xy = huE_common.convertHexColorToXY(quickAction.color);
 
@@ -91,5 +91,6 @@ let huE_lights = {
 				huE_common.tolerantStateChangeErrorHandling(error, $.i18n('error-label-general'));
 			});
 	}
+
 };
 

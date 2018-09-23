@@ -61,7 +61,7 @@ let huE_groups = {
 	applyQuickAction(quickAction) {
 		huE_common.huejayClient.groups.getById(quickAction.id)
 			.then(group => {
-				group.on = quickAction.on;
+				group.on = JSON.parse(quickAction.on.toLowerCase());
 				group.brightness = quickAction.brightness;
 				group.xy =  huE_common.convertHexColorToXY(quickAction.color);
 
@@ -124,4 +124,5 @@ let huE_groups = {
 				huE_common.showError($.i18n('error-label-general'), error.message);
 			});
 	}
+
 };
