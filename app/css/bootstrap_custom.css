@@ -1,3 +1,8 @@
+.navbar {
+	background-color: #f8f8f8;
+	padding: 0;
+}
+
 .card-header .fa {
 	transition: .3s transform ease-in-out;
 }
