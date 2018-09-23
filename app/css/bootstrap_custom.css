@@ -1,13 +1,8 @@
-.collapse-panel-heading .accordion-toggle:after {
-	font-family: 'Font Awesome 5 Free';
-	content: '\f107';
-	float: right;
-	/*color: grey;*/
-	font-weight: 900;
+.card-header .fa {
+	transition: .3s transform ease-in-out;
 }
-
-.collapse-panel-heading .accordion-toggle.collapsed:after {
-	content: '\f105';
+.card-header .collapsed .fa {
+	transform: rotate(90deg);
 }
 
 .collapse-btn.btn:after {
