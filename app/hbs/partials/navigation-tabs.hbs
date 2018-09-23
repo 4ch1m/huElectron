@@ -1,9 +1,9 @@
 <nav class="navbar-default navbar-fixed-top">
     <div class="container">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" role="tablist">
             {{#each items}}
-                <li>
-                    <a id="{{id}}" data-toggle="tab" href="#{{id}}-tab">
+                <li class="nav-item">
+                    <a class="nav-link" id="{{id}}" data-toggle="tab" href="#{{id}}-tab" role="tab">
                         <strong><i class="{{iconClass}}"></i></strong>&nbsp;{{label}}
                     </a>
                     <script>
@@ -19,7 +19,7 @@
 
 <div class="tab-content">
     {{#each items}}
-        <div id="{{id}}-tab" class="tab-pane fade in active">
+        <div id="{{id}}-tab" class="tab-pane fade in active" role="tabpanel">
             <br>
             <div id="{{id}}-tab-content" class="container"></div>
         </div>

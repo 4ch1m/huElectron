@@ -1,12 +1,12 @@
 <table class="table table-hover">
 	<thead>
-	<tr>
-		<th></th>
-		<th>{{I18n 'sensors-column-name'}}</th>
-		<th>{{I18n 'sensors-column-id'}}</th>
-		<th>{{I18n 'sensors-column-type'}}</th>
-		<th></th>
-	</tr>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">{{I18n 'sensors-column-name'}}</th>
+            <th scope="col">{{I18n 'sensors-column-id'}}</th>
+            <th scope="col">{{I18n 'sensors-column-type'}}</th>
+            <th scope="col"></th>
+        </tr>
 	</thead>
 	<tbody>
 	{{#each sensors}}
@@ -20,7 +20,7 @@
 			<td>{{id}}</td>
 			<td>{{type}}</td>
 			<td>
-				<button id="edit-button-sensor-{{id}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;{{I18n 'sensors-edit'}}</button>
+				<button id="edit-button-sensor-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'sensors-edit'}}</button>
 				<script>
 					$('#edit-button-sensor-{{id}}').on('click', function() {
 						$('#sensor-edit-modal-id').val('{{id}}');
@@ -36,12 +36,12 @@
 </table>
 
 <!-- Edit Modal -->
-<div class="modal fade" id="sensor-edit-modal" tabindex="-1" role="dialog" aria-labelledby="sensor-edit-modal-label">
+<div class="modal fade" id="sensor-edit-modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header modal-header-primary">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="sensor-edit-modal-label">{{I18n 'sensors-edit-modal-label'}}</h4>
+                <h5 class="modal-title" id="sensor-edit-modal-label">{{I18n 'sensors-edit-modal-label'}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 			</div>
 			<div class="modal-body">
 				<form>

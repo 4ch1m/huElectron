@@ -82,11 +82,9 @@ Prebuilt binaries for all target platforms can be found in the [releases](https:
 	   npm start
 	   ```
 
-
 ## Author
 
 :email: [Achim Seufert](mailto:contact@huelectron.achimonline.de)
-
 
 ## License
 

@@ -110,7 +110,7 @@
 </table>
 
 <!-- Edit Button -->
-<button id="edit-button-bridge-{{connectedBridge.id}}" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;{{I18n 'bridges-edit'}}</button>
+<button id="edit-button-bridge-{{connectedBridge.id}}" class="btn btn-lg btn-primary btn-block"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'bridges-edit'}}</button>
 <script>
     $('#edit-button-bridge-{{connectedBridge.id}}').on('click', function() {
         $('#bridge-edit-modal-id').val('{{connectedBridge.id}}');
@@ -127,8 +127,8 @@
 <table class="table table-hover">
 	<thead>
 	<tr>
-		<th>{{I18n 'bridges-other-column-id'}}</th>
-		<th>{{I18n 'bridges-other-column-ip'}}</th>
+		<th scope="col">{{I18n 'bridges-other-column-id'}}</th>
+		<th scope="col">{{I18n 'bridges-other-column-ip'}}</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -143,12 +143,12 @@
 {{/if}}
 
 <!-- Edit Modal -->
-<div class="modal fade" id="bridge-edit-modal" tabindex="-1" role="dialog" aria-labelledby="bridge-edit-modal-label">
+<div class="modal fade" id="bridge-edit-modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header modal-header-primary">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="bridge-edit-modal-label">{{I18n 'bridges-edit-modal-label'}}</h4>
+                <h5 class="modal-title" id="bridge-edit-modal-label">{{I18n 'bridges-edit-modal-label'}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 			</div>
 			<div class="modal-body">
 				<form>

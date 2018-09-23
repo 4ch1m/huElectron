@@ -7,9 +7,8 @@
 		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" href="../node_modules/@claviska/jquery-minicolors/jquery.minicolors.css">
 		<link rel="stylesheet" href="../node_modules/rangeslider.js/dist/rangeslider.css">
-		<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
 		<!-- *** -->
-		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/onoffswitch.css">
 		<link rel="stylesheet" href="css/bootstrap_custom.css">
 		<link rel="stylesheet" href="css/minicolors_custom.css">
@@ -51,7 +50,7 @@
 					{id: 'quickactions', label: $.i18n('tabs-quickactions'), iconClass: 'fa fa-play',             on_show: 'huE_quickActions.get()'},
 			        {id: 'bridges',      label: $.i18n('tabs-bridges'),      iconClass: 'fa fa-home',             on_show: 'huE_bridges.get()'     },
 			        {id: 'users',        label: $.i18n('tabs-users'),        iconClass: 'fa fa-user',             on_show: 'huE_users.get()'       },
-			        {id: 'lights',       label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb-o',      on_show: 'huE_lights.get()'      },
+			        {id: 'lights',       label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb',        on_show: 'huE_lights.get()'      },
 			        {id: 'groups',       label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: 'huE_groups.get()'      },
 			        {id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     }
 				];
@@ -68,12 +67,12 @@
 		<!-- Main App with Tabs -->
 		<div id="main-content-tabs" style="display: none"></div>
 		<!-- Error Modal -->
-		<div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="error-modal-label">
+		<div class="modal fade" id="error-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header modal-header-danger">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="error-modal-label"></h4>
+						<h5 class="modal-title" id="error-modal-label"></h5>
+						<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					</div>
 					<div id="error-modal-message" class="modal-body"></div>
 					<div class="modal-footer">
@@ -83,12 +82,12 @@
 			</div>
 		</div>
 		<!-- Success Modal -->
-		<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="success-modal-label">
+		<div class="modal fade" id="success-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content">
 					<div class="modal-header modal-header-success">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="success-modal-label"></h4>
+						<h5 class="modal-title" id="success-modal-label"></h5>
+						<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					</div>
 					<div id="success-modal-message" class="modal-body"></div>
 					<div class="modal-footer">
@@ -98,12 +97,12 @@
 			</div>
 		</div>
 		<!-- Confirmation Modal -->
-		<div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmation-modal-label">
+		<div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content">
 					<div class="modal-header modal-header-warning">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="confirmation-modal-label"></h4>
+						<h5 class="modal-title" id="confirmation-modal-label"></h5>
+						<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					</div>
 					<div id="confirmation-modal-message" class="modal-body"></div>
 					<div class="modal-footer">

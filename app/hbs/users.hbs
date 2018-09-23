@@ -1,11 +1,11 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>{{I18n 'users-column-username'}}</th>
-			<th>{{I18n 'users-column-devicetype'}}</th>
-			<th>{{I18n 'users-column-createdate'}}</th>
-			<th>{{I18n 'users-column-lastusedate'}}</th>
-			<th></th>
+			<th scope="col">{{I18n 'users-column-username'}}</th>
+			<th scope="col">{{I18n 'users-column-devicetype'}}</th>
+			<th scope="col">{{I18n 'users-column-createdate'}}</th>
+			<th scope="col">{{I18n 'users-column-lastusedate'}}</th>
+			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,7 +19,7 @@
 			<td>{{lastUsed}}</td>
 			<td>
 				{{#ifNotCond username ../usedUser}}
-				<button id="delete-button-user-{{username}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp;{{I18n 'users-delete'}}</button>
+				<button id="delete-button-user-{{username}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'users-delete'}}</button>
 				<script>
 					$('#delete-button-user-{{username}}').on('click', function() {
 					    let confirmationCallback = function() { huE_users.deleteByName('{{username}}') };

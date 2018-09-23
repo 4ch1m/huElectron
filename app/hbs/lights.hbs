@@ -1,4 +1,4 @@
-<div class="panel-group" id="lights-accordion" role="tablist" aria-multiselectable="false">
+<div class="panel-group" id="lights-accordion" role="tablist">
 
 {{#each lights}}
 
@@ -7,14 +7,14 @@
 		<!-- Light Item Collapsed -->
 		<div class="collapse-panel-heading panel-heading" role="tab" id="heading-light-{{id}}">
 			<h4 class="panel-title">
-				<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#lights-accordion" href="#collapse-light-{{id}}" aria-expanded="false" aria-controls="collapse-light-{{id}}">
+				<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#lights-accordion" href="#collapse-light-{{id}}">
 					{{#getProductIcon modelId}}{{/getProductIcon}}{{name}} <small>({{I18n 'lights-id'}}: {{id}})</small>
 				</a>
 			</h4>
 		</div>
 
 		<!-- Light Item Expanded -->
-		<div id="collapse-light-{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-light-{{id}}">
+		<div id="collapse-light-{{id}}" class="panel-collapse collapse" role="tabpanel">
 			<div class="panel-body">
 
 				<!-- Actions -->
@@ -28,7 +28,7 @@
 						xy=xy}}
 
 				<!-- Edit -->
-				<button id="edit-button-light-{{id}}" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-edit'}}</button>
+				<button id="edit-button-light-{{id}}" class="btn btn-lg btn-primary btn-block"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-edit'}}</button>
 				<script>
 					$('#edit-button-light-{{id}}').click(function() {
 						$('#light-settings-modal-id').val('{{id}}');
@@ -42,7 +42,7 @@
 				<br>
 
 				<!-- Delete -->
-				<button id="delete-button-light-{{id}}" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-delete'}}</button>
+				<button id="delete-button-light-{{id}}" class="btn btn-lg btn-danger btn-block"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-delete'}}</button>
 				<script>
 					$('#delete-button-light-{{id}}').click(function() {
 						let confirmationCallback = function() { huE_lights.deleteById('{{id}}') };
@@ -53,7 +53,7 @@
 				<br>
 
 				<!-- Details -->
-				<button id="details-button-light-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed" data-toggle="collapse" data-target="#details-light-{{id}}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-details'}}</button>
+				<button id="details-button-light-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed" data-toggle="collapse" data-target="#details-light-{{id}}"><span class="fas fa-info-circle"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-details'}}</button>
 
 				<!-- Details Expanded -->
 				<div id="details-light-{{id}}" class="collapse">
@@ -174,12 +174,12 @@
 </div>
 
 <!-- Settings Modal -->
-<div class="modal fade" id="light-settings-modal" tabindex="-1" role="dialog" aria-labelledby="light-settings-modal-label">
+<div class="modal fade" id="light-settings-modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header modal-header-primary">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="light-settings-modal-label">{{I18n 'lights-settings-modal-label'}}</h4>
+                <h5 class="modal-title" id="light-settings-modal-label">{{I18n 'lights-settings-modal-label'}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 			</div>
 			<div class="modal-body">
 				<form>

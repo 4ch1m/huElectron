@@ -1,4 +1,4 @@
-<div class="panel-group" id="groups-accordion" role="tablist" aria-multiselectable="false">
+<div class="panel-group" id="groups-accordion" role="tablist">
 
 {{#each groups}}
 
@@ -7,14 +7,14 @@
 		<!-- Group Item Collapsed -->
 		<div class="collapse-panel-heading panel-heading" role="tab" id="heading-group-{{id}}">
 			<h4 class="panel-title">
-				<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#groups-accordion" href="#collapse-group-{{id}}" aria-expanded="false" aria-controls="collapse-group-{{id}}">
+				<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#groups-accordion" href="#collapse-group-{{id}}">
 					{{#getGroupIcon type class}}{{/getGroupIcon}}{{name}} <small>({{I18n 'groups-id'}}: {{id}})</small>
 				</a>
 			</h4>
 		</div>
 
 		<!-- Group Item Expanded -->
-		<div id="collapse-group-{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-group-{{id}}">
+		<div id="collapse-group-{{id}}" class="panel-collapse collapse" role="tabpanel">
 			<div class="panel-body">
 
 				<!-- Actions -->
@@ -28,7 +28,7 @@
 						xy=xy}}
 
 				<!-- Edit -->
-				<button id="edit-button-group-{{id}}" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-edit'}}</button>
+				<button id="edit-button-group-{{id}}" class="btn btn-lg btn-primary btn-block"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-edit'}}</button>
 				<script>
 					$('#edit-button-group-{{id}}').click(function() {
 					    let usedLightIds = [];
@@ -55,7 +55,7 @@
 				<br>
 
 				<!-- Delete -->
-				<button id="delete-button-group-{{id}}" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-delete'}}</button>
+				<button id="delete-button-group-{{id}}" class="btn btn-lg btn-danger btn-block"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-delete'}}</button>
 				<script>
 					$('#delete-button-group-{{id}}').click(function() {
 					    let confirmationCallback = function() { huE_groups.deleteById('{{id}}') };
@@ -66,7 +66,7 @@
 				<br>
 
 				<!-- Details -->
-				<button id="details-button-group-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed" data-toggle="collapse" data-target="#details-group-{{id}}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-details'}}</button>
+				<button id="details-button-group-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed" data-toggle="collapse" data-target="#details-group-{{id}}"><span class="fas fa-info-circle"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-details'}}</button>
 
 				<!-- Details Expanded -->
 				<div id="details-group-{{id}}" class="collapse">
@@ -150,7 +150,7 @@
 
 	<!-- New Group -->
 	<div class="panel">
-		<button id="groups-add-new" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-add-new'}}</button>
+		<button id="groups-add-new" class="btn btn-lg btn-primary btn-block"><span class="fas fa-plus"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-add-new'}}</button>
 		<script>
 			$('#groups-add-new').click(function() {
 				$('#group-edit-modal-label').text('{{I18n 'groups-edit-modal-label-new'}}');
@@ -165,12 +165,12 @@
 </div>
 
 <!-- Edit/New Group Modal -->
-<div class="modal fade" id="group-edit-modal" tabindex="-1" role="dialog" aria-labelledby="group-edit-modal-label">
+<div class="modal fade" id="group-edit-modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header modal-header-primary">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="group-edit-modal-label"></h4>
+                <h5 class="modal-title" id="group-edit-modal-label"></h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 			</div>
 			<div class="modal-body">
 				<form>
