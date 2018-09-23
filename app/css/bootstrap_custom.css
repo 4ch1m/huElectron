@@ -16,3 +16,23 @@
 .collapse-btn.btn.collapsed:after {
 	content: '\f105';
 }
+
+modal-header-success {
+	background-color: #5cb85c;
+}
+
+.modal-header-warning {
+	background-color: #f0ad4e;
+}
+
+.modal-header-danger {
+	background-color: #d9534f;
+}
+
+.modal-header-info {
+	background-color: #5bc0de;
+}
+
+.modal-header-primary {
+	background-color: #428bca;
+}
