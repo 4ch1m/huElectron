@@ -9,6 +9,7 @@
   "tabs-users": "Users",
   "tabs-lights": "Lights",
   "tabs-groups": "Groups",
+  "tabs-scenes": "Scenes",
   "tabs-sensors": "Sensors",
 
   "bridges-loading": "Loading Bridges ...",
@@ -125,6 +126,19 @@
   "quickactions-delete": "Delete",
   "quickactions-execute": "Execute",
 
+  "scenes-loading": "Loading Scenes ...",
+  "scenes-column-name": "Name",
+  "scenes-column-owner": "Owner",
+  "scenes-column-light-ids": "Light IDs",
+  "scenes-column-locked": "Locked",
+  "scenes-edit": "Edit",
+  "scenes-delete": "Delete",
+  "scenes-edit-modal-label": "Edit Scene",
+  "scenes-edit-modal-name": "Name",
+  "scenes-edit-modal-close": "Close",
+  "scenes-edit-modal-save": "Save",
+  "scenes-edit-modal-available-lights": "Available Lights",
+
   "sensors-loading": "Loading Sensors ...",
   "sensors-edit": "Edit",
   "sensors-column-name": "Name",
@@ -157,13 +171,15 @@
 
   "success-label-general": "Alrighty then.",
   "success-msg-light-settings": "Light succesfully updated.",
-  "success-msg-group-settings": "Groups succesfully updated.",
-  "success-msg-user-settings": "Users succesfully updated.",
+  "success-msg-group-settings": "Group succesfully updated.",
+  "success-msg-user-settings": "User succesfully updated.",
   "success-msg-bridge-settings": "Bridge succesfully updated.",
+  "success-msg-scene-settings": "Scene succesfully updated.",
   "success-msg-sensor-settings": "Sensor succesfully updated.",
 
   "confirmation-label-delete-confirmation": "Delete Confirmation",
   "confirmation-msg-delete-user": "Really delete this user?",
   "confirmation-msg-delete-group": "Really delete this group?",
-  "confirmation-msg-delete-light": "Really delete this light?"
+  "confirmation-msg-delete-light": "Really delete this light?",
+  "confirmation-msg-delete-scene": "Really delete this scene?"
 }

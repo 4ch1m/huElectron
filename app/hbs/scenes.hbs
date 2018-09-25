@@ -1,0 +1,122 @@
+<table class="table table-sm table-hover">
+	<thead>
+        <tr>
+            <th scope="col" class="text-nowrap">{{I18n 'scenes-column-name'}}</th>
+            <th scope="col" class="text-nowrap">{{I18n 'scenes-column-owner'}}</th>
+            <th scope="col" class="text-nowrap">{{I18n 'scenes-column-light-ids'}}</th>
+            <th scope="col" class="text-nowrap">{{I18n 'scenes-column-locked'}}</th>
+            <th scope="col" colspan="2"></th>
+        </tr>
+	</thead>
+	<tbody>
+	{{#each scenes}}
+		<tr>
+			<td>
+				<strong>{{name}}</strong>
+			</td>
+            <td>
+                {{owner}}
+            </td>
+			<td>
+                {{#each lightIds}}
+                    {{#unless @first}}, {{/unless}}
+                    {{this}}
+                {{/each}}
+            </td>
+            <td>
+                {{#ifCond locked true}}
+                    {{I18n 'yes'}}
+                {{/ifCond}}
+                {{#ifCond locked false}}
+                    {{I18n 'no'}}
+                {{/ifCond}}
+            </td>
+			<td>
+                <button id="edit-button-scene-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-edit'}}</button>
+                <script>
+                    $('#edit-button-scene-{{id}}').on('click', function() {
+                        let usedLightIds = [];
+                        {{#each lightIds}}
+                            usedLightIds.push('{{this}}');
+                        {{/each}}
+
+                        $('#scene-edit-modal-label').text('{{I18n 'scenes-edit-modal-label'}}');
+                        $('#scene-edit-modal-id').val('{{id}}');
+                        $('#scene-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
+
+                        $('#scene-edit-modal-available-lights :input').each(function() {
+                            let lightIdIsPartOfScene = usedLightIds.indexOf($(this).val()) != -1;
+                            $(this).attr("checked", lightIdIsPartOfScene);
+                        });
+
+                        $('#scene-edit-modal').modal('show');
+                    });
+                </script>
+			</td>
+            <td>
+                <button id="delete-button-scene-{{scenename}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-delete'}}</button>
+                <script>
+                    $('#delete-button-scene-{{scenename}}').on('click', function() {
+                        let confirmationCallback = function() { huE_scenes.deleteById('{{scenename}}') };
+                        huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-scene'}}', confirmationCallback);
+                    });
+                </script>
+            </td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+
+<!-- Edit Scene Modal -->
+<div class="modal fade" id="scene-edit-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" id="scene-edit-modal-label"></h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input id="scene-edit-modal-id" type="hidden">
+                    <div class="form-group">
+                        <label for="scene-edit-modal-name" class="control-label">{{I18n 'scenes-edit-modal-name'}}</label>
+                        <input type="text" class="form-control" id="scene-edit-modal-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="scene-edit-modal-available-lights">{{I18n 'scenes-edit-modal-available-lights'}}</label>
+                        <div class="card" id="scene-edit-modal-available-lights">
+                            <div class="card-body">
+                                {{#each availableLights}}
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value="{{this.id}}">{{this.name}} <small>(ID: {{this.id}})</small></label>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{I18n 'scenes-edit-modal-close'}}</button>
+                <button type="button" class="btn btn-primary text-left" id="scene-edit-modal-save" data-dismiss="modal">{{I18n 'scenes-edit-modal-save'}}</button>
+                <script>
+                    $('#scene-edit-modal-save').click(function() {
+                        let id = $('#scene-edit-modal-id').val();
+                        let name = $('#scene-edit-modal-name').val();
+                        let lightIds = [];
+
+                        $('#scene-edit-modal-available-lights :input').each(function() {
+                            if ($(this).prop('checked')) {
+                                lightIds.push($(this).val());
+                            }
+                        });
+
+                        huE_scenes.save({id: id,
+                                         name: name,
+                                         lightIds: lightIds});
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
