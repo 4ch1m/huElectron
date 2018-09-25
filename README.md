@@ -29,6 +29,7 @@ The current feature-set includes:
   * bridges
   * lights
   * groups
+  * scenes
   * sensors
 * quick-actions (set state/color/brightness with one mouse-click) 
 * show detailed information about each light/group
@@ -38,7 +39,6 @@ The current feature-set includes:
 __huElectron__ is still at an early development stage; the following features will be implemented in future releases:
 
 * manage schedules
-* manage scenes
 * manage rules
 * manage portal services
 * implement discovery of new lights
