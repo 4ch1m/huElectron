@@ -4,6 +4,7 @@ let huE_common = {
 	huejay: require('huejay'),
 	huejayClient: null,
 	hueHacking: require('hue-hacking-node'),
+    hueHackingColors: new (require('hue-hacking-node')).HueColors(),
 	uuid: require('uuid/v4'),
 	os: require('os'),
 	htmlDecode: function(value) { return $('<textarea/>').html(value).text(); },
@@ -81,8 +82,8 @@ let huE_common = {
 
 	convertHexColorToXY(hex) {
 		let hexValue = hex.startsWith('#') ? hex.substring(1): hex;
-		let xyValue = huE_common.hueHacking.colors.getCIEColor(hexValue);
+		let xyPoint = huE_common.hueHackingColors.getCIEColor(hexValue);
 
-		return [xyValue[0], xyValue[1]];
+		return [xyPoint.x, xyPoint.y];
 	}
 };

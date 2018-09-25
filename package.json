@@ -33,7 +33,7 @@
     "electron-window-state": "^5.0.1",
     "@fortawesome/fontawesome-free": "^5.3.1",
     "handlebars": "^4.0.12",
-    "hue-hacking-node": "^0.0.11",
+    "hue-hacking-node": "^1.2.1",
     "huejay": "^1.8.5",
     "jquery": "^3.1.1",
     "jquery.i18n": "git+https://github.com/wikimedia/jquery.i18n#8f38bc447c6994bc8d8b77470c87b2a2f4926604",

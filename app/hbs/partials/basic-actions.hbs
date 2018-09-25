@@ -40,7 +40,8 @@
                     </div>
                     <script>
                         $(function () {
-                            let hexColor = huE_common.hueHacking.colors.CIE1931ToHex({{xy.[0]}}, {{xy.[1]}}, {{brightness}});
+                            let xyPoint = new huE_common.hueHacking.XYPoint(...[{{xy.[0]}}, {{xy.[1]}}]);
+                            let hexColor = huE_common.hueHackingColors.CIE1931ToHex(xyPoint, {{brightness}});
 
                             $('#colorpicker-{{huE_target}}-{{id}}').minicolors({
                                 change: function(value, opacity) {
