@@ -71,4 +71,5 @@ let huE_quickActions = {
 			huE_groups.applyQuickAction(quickAction);
 		}
 	}
+
 };
