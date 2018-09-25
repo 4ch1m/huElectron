@@ -54,10 +54,10 @@
                 </script>
 			</td>
             <td>
-                <button id="delete-button-scene-{{scenename}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-delete'}}</button>
+                <button id="delete-button-scene-{{id}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-delete'}}</button>
                 <script>
-                    $('#delete-button-scene-{{scenename}}').on('click', function() {
-                        let confirmationCallback = function() { huE_scenes.deleteById('{{scenename}}') };
+                    $('#delete-button-scene-{{id}}').on('click', function() {
+                        let confirmationCallback = function() { huE_scenes.deleteById('{{id}}') };
                         huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-scene'}}', confirmationCallback);
                     });
                 </script>
