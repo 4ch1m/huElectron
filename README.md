@@ -4,10 +4,10 @@
 
 > An open-source and cross-platform app for the [Hue Lighting System](https://www2.meethue.com) from _Philips_ - built on [Electron](http://electron.atom.io).
 
-Branch | Status
-:------: | :------:
-master | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=master)](https://travis-ci.org/4ch1m/huElectron)
-development | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=development)](https://travis-ci.org/4ch1m/huElectron)
+Branch | Status | Dependencies
+:------: | :------: | :------:
+master | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=master)](https://travis-ci.org/4ch1m/huElectron) | ![Dependencies](https://david-dm.org/4ch1m/huElectron.svg)
+development | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=development)](https://travis-ci.org/4ch1m/huElectron) | n/a
 
 ## Screenshots
 
