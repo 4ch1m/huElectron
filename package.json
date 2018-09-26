@@ -1,7 +1,7 @@
 {
   "name": "huelectron",
   "productName": "huElectron",
-  "version": "0.3.0",
+  "version": "0.2.0",
   "description": "An open-source and cross-platform app for the 'Hue Lighting System' from Philips",
   "license": "MIT",
   "repository": "4ch1m/huElectron",
