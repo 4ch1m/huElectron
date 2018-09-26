@@ -45,6 +45,7 @@
 		<script src="js/groups.js"></script>
 		<script src="js/scenes.js"></script>
 		<script src="js/sensors.js"></script>
+		<script src="js/about.js"></script>
 		<!-- *** -->
 		<script>
 			$(document).ready(function() {
@@ -55,7 +56,8 @@
 			        {id: 'lights',       label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb',        on_show: 'huE_lights.get()'      },
 			        {id: 'groups',       label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: 'huE_groups.get()'      },
                     {id: 'scenes',       label: $.i18n('tabs-scenes'),       iconClass: 'fa fa-palette',          on_show: 'huE_scenes.get()'      },
-			        {id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     }
+			        {id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     },
+                    {id: 'about',        label: $.i18n('tabs-about'),        iconClass: 'fa fa-info',             on_show: 'huE_about.get()'       }
 				];
 
                 $('#main-content-tabs').html(Handlebars.compile(Handlebars.partials.navigation_tabs)({items: tabItems}));

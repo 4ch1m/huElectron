@@ -1,0 +1,34 @@
+<div class="jumbotron">
+
+    <h2>{{I18n 'app-name'}} <span class="badge badge-secondary">{{I18n 'app-version'}}</span></h2>
+
+    <hr class="my-4">
+
+    <button id="external_source" class="btn btn-lg btn-primary">
+        <i class="fab fa-github-alt"></i> Source
+        <script>
+            $('#external_source').click(function(e) {
+                huE_common.openExternal(e, "https://github.com/4ch1m/huElectron");
+            });
+        </script>
+    </button>
+
+    <button id="external_releases" class="btn btn-lg bg-warning">
+        <i class="fas fa-file-archive"></i> Releases
+        <script>
+            $('#external_releases').click(function(e) {
+                huE_common.openExternal(e, "https://github.com/4ch1m/huElectron/releases");
+            });
+        </script>
+    </button>
+
+    <button id="external_email" class="btn btn-lg btn-success">
+        <i class="fas fa-envelope"></i> eMail
+        <script>
+            $('#external_email').click(function(e) {
+                huE_common.openExternal(e, "mailto:contact@huelectron.achimonline.de");
+            });
+        </script>
+    </button>
+
+</div>

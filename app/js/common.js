@@ -85,5 +85,11 @@ let huE_common = {
 		let xyPoint = huE_common.hueHackingColors.getCIEColor(hexValue);
 
 		return [xyPoint.x, xyPoint.y];
+	},
+
+	openExternal(event, link) {
+        event.preventDefault();
+        require("electron").shell.openExternal(link);
+        return false;
 	}
 };

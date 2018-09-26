@@ -1,4 +1,7 @@
 {
+  "app-name": "huElectron",
+  "app-version": "0.3.0",
+
   "info": "Info",
   "close": "Close",
   "yes": "Yes",
@@ -11,6 +14,7 @@
   "tabs-groups": "Groups",
   "tabs-scenes": "Scenes",
   "tabs-sensors": "Sensors",
+  "tabs-about": "About",
 
   "bridges-loading": "Loading Bridges ...",
   "bridges-discovering": "Discovering Bridges ...",
