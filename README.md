@@ -27,10 +27,11 @@ The current feature-set includes:
 
 * easy management of ...
   * bridges
+  * users
   * lights
   * groups
-  * scenes
-  * sensors
+  * (scenes)
+  * (sensors)
 * quick-actions (set state/color/brightness with one mouse-click) 
 * show detailed information about each light/group
 
@@ -45,6 +46,7 @@ __huElectron__ is still at an early development stage; the following features wi
 * implement discovery of new new sensors
 * enhance bridge-management (zigbeeChannel, proxyPort, timeZone, etc.)
 * enhance sensor-management (type, virtual sensor creation, etc.)
+* enhance scene-management
 
 Oh, and although I've tried to make the app look somewhat decent by extensively using [Bootstrap](https://getbootstrap.com), of course there's always room for improvement/beautification.
 So any help/contribution from web-design-wizards is highly welcome. :smiley:
