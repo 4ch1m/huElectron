@@ -65,7 +65,10 @@
 				<br>
 
 				<!-- Details -->
-				<button id="details-button-group-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed mb-2" data-toggle="collapse" data-target="#details-group-{{id}}"><span class="fas fa-info-circle"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-details'}}</button>
+				<button id="details-button-group-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed mb-2" data-toggle="collapse" data-target="#details-group-{{id}}">
+                    <span class="fas fa-info-circle"></span>&nbsp;&nbsp;&nbsp;{{I18n 'groups-details'}}
+                    <i class="fa fa-chevron-down pull-right"></i>
+                </button>
 
 				<!-- Details Expanded -->
 				<div id="details-group-{{id}}" class="collapse">

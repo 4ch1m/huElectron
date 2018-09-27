@@ -11,16 +11,12 @@
 	transform: rotate(90deg);
 }
 
-.collapse-btn.btn:after {
-	font-family: 'Font Awesome 5 Free';
-	content: '\f107';
-	float: right;
-	margin-left: 15px;
-	font-weight: 900;
+.collapse-btn .fa {
+	transition: .3s transform ease-in-out;
 }
 
-.collapse-btn.btn.collapsed:after {
-	content: '\f105';
+.collapse-btn.collapsed .fa {
+	transform: rotate(90deg);
 }
 
 modal-header-success {
