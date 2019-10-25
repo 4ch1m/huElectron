@@ -17,8 +17,8 @@ let huE_quickActions = {
 	save(name, target, targetId, on, brightness, color) {
 		let quickActions = [];
 
-		if (huE_common.config.has(CONFIG_KEYS.quickActions)) {
-			quickActions = huE_common.config.get(CONFIG_KEYS.quickActions);
+		if (huE_common.store.has(STORE_KEYS.quickActions)) {
+			quickActions = huE_common.store.get(STORE_KEYS.quickActions);
 		}
 
 		let quickAction = { id: huE_common.uuid(),
@@ -31,20 +31,20 @@ let huE_quickActions = {
 
 		quickActions.push(quickAction);
 
-		huE_common.config.set(CONFIG_KEYS.quickActions, quickActions);
+		huE_common.store.set(STORE_KEYS.quickActions, quickActions);
 	},
 
 	getAll() {
-		if (huE_common.config.has(CONFIG_KEYS.quickActions)) {
-			return huE_common.config.get(CONFIG_KEYS.quickActions);
+		if (huE_common.store.has(STORE_KEYS.quickActions)) {
+			return huE_common.store.get(STORE_KEYS.quickActions);
 		} else {
 			return [];
 		}
 	},
 
 	deleteById(id) {
-		if (huE_common.config.has(CONFIG_KEYS.quickActions)) {
-			let oldQuickActions = huE_common.config.get(CONFIG_KEYS.quickActions);
+		if (huE_common.store.has(STORE_KEYS.quickActions)) {
+			let oldQuickActions = huE_common.store.get(STORE_KEYS.quickActions);
 			let newQuickActions = [];
 
 			oldQuickActions.forEach(function(quickAction) {
@@ -54,7 +54,7 @@ let huE_quickActions = {
 			});
 
 			if (newQuickActions.length != oldQuickActions.length) {
-				huE_common.config.set(CONFIG_KEYS.quickActions, newQuickActions);
+				huE_common.store.set(STORE_KEYS.quickActions, newQuickActions);
 			}
 		}
 	},

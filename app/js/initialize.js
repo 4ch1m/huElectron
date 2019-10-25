@@ -101,14 +101,14 @@
 (function initHuejayClientAndMainContent() {
 	$(document).ready(function() {
 		// check if a complete persisted config exists
-		if (huE_common.config.has(CONFIG_KEYS.bridgeIp) &&
-			huE_common.config.has(CONFIG_KEYS.bridgeId) &&
-			huE_common.config.has(CONFIG_KEYS.userName)) {
+		if (huE_common.store.has(STORE_KEYS.bridgeIp) &&
+			huE_common.store.has(STORE_KEYS.bridgeId) &&
+			huE_common.store.has(STORE_KEYS.userName)) {
 
 			// create client from stored config-values
 			huE_common.huejayClient = new huE_common.huejay.Client({
-				host: huE_common.config.get(CONFIG_KEYS.bridgeIp),
-				username: huE_common.config.get(CONFIG_KEYS.userName)
+				host: huE_common.store.get(STORE_KEYS.bridgeIp),
+				username: huE_common.store.get(STORE_KEYS.userName)
 			});
 
 			// ping bridge
@@ -118,7 +118,7 @@
 					huE_common.huejayClient.bridge.get()
 						.then(bridge => {
 							// check if stored bridge-id matches the connected bridge-id
-							if (bridge.id == huE_common.config.get(CONFIG_KEYS.bridgeId)) {
+							if (bridge.id == huE_common.store.get(STORE_KEYS.bridgeId)) {
 								// check if we're authenticated
 								huE_common.huejayClient.bridge.isAuthenticated()
 									.then(() => {

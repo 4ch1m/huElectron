@@ -22,14 +22,14 @@
 						// try to log in again with the selected bridge/ip
 						let tempClient = new huE_common.huejay.Client({
 							host: '{{ip}}',
-							username: huE_common.config.get(CONFIG_KEYS.userName)
+							username: huE_common.store.get(STORE_KEYS.userName)
 						});
 
 						tempClient.bridge.isAuthenticated()
 							.then(() => {
 								// the user exists on that bridge
-								huE_common.config.set(CONFIG_KEYS.bridgeIp, '{{ip}}');
-								huE_common.config.set(CONFIG_KEYS.bridgeId, '{{id}}');
+								huE_common.store.set(STORE_KEYS.bridgeIp, '{{ip}}');
+								huE_common.store.set(STORE_KEYS.bridgeId, '{{id}}');
 
 								huE_common.huejayClient = tempClient;
 

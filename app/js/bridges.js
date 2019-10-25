@@ -10,7 +10,7 @@ let huE_bridges = {
 				// separate the connected bridge from all others
 				let otherBridges = [];
 				for (let discoveredBridge of bridges) {
-					if (discoveredBridge.ip != huE_common.config.get(CONFIG_KEYS.bridgeIp)) {
+					if (discoveredBridge.ip != huE_common.store.get(STORE_KEYS.bridgeIp)) {
 						otherBridges.push(discoveredBridge);
 					}
 				}
@@ -58,13 +58,13 @@ let huE_bridges = {
 
 		client.users.create(user)
 			.then(user => {
-				huE_common.config.set(CONFIG_KEYS.bridgeIp, bridgeIp);
-				huE_common.config.set(CONFIG_KEYS.bridgeId, bridgeId);
-				huE_common.config.set(CONFIG_KEYS.userName, user.username);
+				huE_common.store.set(STORE_KEYS.bridgeIp, bridgeIp);
+				huE_common.store.set(STORE_KEYS.bridgeId, bridgeId);
+				huE_common.store.set(STORE_KEYS.userName, user.username);
 
 				huE_common.huejayClient = new huE_common.huejay.Client({
-					host: huE_common.config.get(CONFIG_KEYS.bridgeIp),
-					username: huE_common.config.get(CONFIG_KEYS.userName)
+					host: huE_common.store.get(STORE_KEYS.bridgeIp),
+					username: huE_common.store.get(STORE_KEYS.userName)
 				});
 
 				huE_common.switchToMainContentElement('tabs');

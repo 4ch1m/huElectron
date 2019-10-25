@@ -8,7 +8,7 @@ let huE_users = {
 		huE_common.huejayClient.users.getAll()
 			.then(users => {
 				let templateContext = { users: users,
-                    					usedUser: huE_common.config.get(CONFIG_KEYS.userName) };
+                    					usedUser: huE_common.store.get(STORE_KEYS.userName) };
 
 				huE_common.setTemplate(usersTabContent, 'hbs/users.hbs', templateContext);
 			});

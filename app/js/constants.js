@@ -2,7 +2,7 @@ const APP_BRIDGEUSER_DEVICETYPE = 'huElectron';
 
 const MAX_BRIGHTNESS_VALUE = 254;
 
-const CONFIG_KEYS = {
+const STORE_KEYS = {
 	bridgeIp: 'bridgeIp',
 	bridgeId: 'bridgeId',
 	userName: 'userName',

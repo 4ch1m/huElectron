@@ -1,6 +1,6 @@
 let huE_common = {
 
-	config: new (require('electron-config'))(),
+	store: new (require('electron-store'))(),
 	huejay: require('huejay'),
 	huejayClient: null,
 	hueHacking: require('hue-hacking-node'),
