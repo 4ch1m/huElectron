@@ -153,6 +153,10 @@
   "sensors-edit-modal-close": "Close",
   "sensors-edit-modal-save": "Save",
 
+  "about-source": "Source",
+  "about-releases": "Releases",
+  "about-email": "eMail",
+
   "users-loading": "Loading Users ...",
   "users-column-username": "Username",
   "users-column-devicetype": "Device Type",

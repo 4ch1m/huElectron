@@ -5,7 +5,7 @@
     <hr class="my-4">
 
     <button id="external_source" class="btn btn-lg btn-primary">
-        <i class="fab fa-github-alt"></i> Source
+        <i class="fab fa-github-alt"></i> {{I18n 'about-source'}}
         <script>
             $('#external_source').click(function(e) {
                 huE_common.openExternal(e, "https://github.com/4ch1m/huElectron");
@@ -14,7 +14,7 @@
     </button>
 
     <button id="external_releases" class="btn btn-lg bg-warning">
-        <i class="fas fa-file-archive"></i> Releases
+        <i class="fas fa-file-archive"></i> {{I18n 'about-releases'}}
         <script>
             $('#external_releases').click(function(e) {
                 huE_common.openExternal(e, "https://github.com/4ch1m/huElectron/releases");
@@ -23,7 +23,7 @@
     </button>
 
     <button id="external_email" class="btn btn-lg btn-success">
-        <i class="fas fa-envelope"></i> eMail
+        <i class="fas fa-envelope"></i> {{I18n 'about-email'}}
         <script>
             $('#external_email').click(function(e) {
                 huE_common.openExternal(e, "mailto:contact@huelectron.achimonline.de");
