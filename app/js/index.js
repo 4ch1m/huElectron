@@ -1,14 +1,14 @@
 'use strict';
 
 const electron = require('electron');
-const config = require('electron-config');
+const store = require('electron-store');
 const windowStateKeeper = require('electron-window-state');
 
 const app = electron.app;
 const dialog = electron.dialog;
 const menu = electron.Menu;
 
-const index = `file://${__dirname}/../index.html`;
+const index = __dirname + '/../index.html';
 
 const menuTemplate = [
 	{
@@ -95,8 +95,8 @@ const menuTemplate = [
 
 					let callback = function(buttonIndex) {
 						if (buttonIndex == 0) {
-							(new config()).clear();
-							mainWindow.loadURL(index);
+							(new store()).clear();
+							mainWindow.loadFile(index);
 						}
 					};
 
@@ -141,7 +141,7 @@ if (process.platform === 'darwin') {
 				role: 'quit'
 			}
 		]
-	})
+	});
 	// Edit menu.
 	menuTemplate[1].submenu.push(
 		{
@@ -158,7 +158,7 @@ if (process.platform === 'darwin') {
 				}
 			]
 		}
-	)
+	);
 	// Window menu.
 	menuTemplate[3].submenu = [
 		{
@@ -183,7 +183,7 @@ if (process.platform === 'darwin') {
 			role: 'front'
 		}
 	]
-};
+}
 
 require('electron-debug')({
 	showDevTools: 'bottom'
@@ -205,15 +205,19 @@ function createMainWindow() {
 	});
 
 	const win = new electron.BrowserWindow({
-		'x': winState.x,
-		'y': winState.y,
-		'width': winState.width,
-		'height': winState.height
+		webPreferences: {
+			nodeIntegration: true
+		},
+		icon: __dirname + '/../img/icon.png',
+		x: winState.x,
+		y: winState.y,
+		width: winState.width,
+		height: winState.height
 	});
 
 	winState.manage(win);
 
-    win.loadURL(index);
+    win.loadFile(index);
 	win.on('closed', onClosed);
 
 	return win;
