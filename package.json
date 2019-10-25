@@ -14,7 +14,8 @@
   "scripts": {
     "start": "electron .",
     "test": "echo 'tests disabled'",
-    "build": "electron-packager . --platform=all --out=dist --overwrite --asar"
+    "build": "electron-packager . --platform=all --out=dist --overwrite --asar",
+    "build-with-travis": "electron-packager . --platform=linux --asar"
   },
   "files": [
     "app/**/*"
