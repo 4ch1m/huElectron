@@ -4,9 +4,9 @@ dist: bionic
 sudo: required
 language: node_js
 node_js:
-  - 12
+  - 13
   - node
 before_install:
-  - sudo apt-get install -y wine
+  - sudo apt-get install -y wine-stable
 before_script:
   - npm run build
