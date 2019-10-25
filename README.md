@@ -2,7 +2,7 @@
 
 # huElectron
 
-> An open-source and cross-platform app for the [Hue Lighting System](https://www2.meethue.com) from _Philips_ - built on [Electron](http://electron.atom.io).
+> An open-source and cross-platform app for the [Hue Lighting System](https://www2.meethue.com) from _Philips_ - built on [Electron](https://electronjs.org).
 
 Branch | Status | Dependencies
 :------: | :------: | :------:
