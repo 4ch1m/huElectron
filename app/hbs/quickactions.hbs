@@ -20,7 +20,7 @@
 		<tr id="quickaction-row-{{id}}">
 			<!-- Execute Button -->
 			<td class="text-left">
-				<button id="quickaction-execute-{{id}}" class="btn btn-default btn-success"><span class="fas fa-play"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-execute'}}</button>
+				<button id="quickaction-execute-{{id}}" class="btn btn-success"><span class="fas fa-play"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-execute'}}</button>
 				<script>
 					$('#quickaction-execute-{{id}}').click(function() {
 						huE_quickActions.execute('{{target}}', '{{targetId}}', '{{on}}', '{{brightness}}', '{{color}}');
@@ -60,7 +60,7 @@
 			</td>
 			<!-- Delete Button -->
 			<td class="text-right">
-				<button id="quickaction-delete-{{id}}" class="btn btn-default btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-delete'}}</button>
+				<button id="quickaction-delete-{{id}}" class="btn btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-delete'}}</button>
 				<script>
 					$('#quickaction-delete-{{id}}').click(function() {
 						huE_quickActions.deleteById('{{id}}');
