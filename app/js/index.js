@@ -9,6 +9,7 @@ const dialog = electron.dialog;
 const menu = electron.Menu;
 
 const index = __dirname + '/../index.html';
+const appIcon = __dirname + '/../img/icon.png';
 
 const menuTemplate = [
 	{
@@ -208,7 +209,7 @@ function createMainWindow() {
 		webPreferences: {
 			nodeIntegration: true
 		},
-		icon: __dirname + '/../img/icon.png',
+		icon: appIcon,
 		x: winState.x,
 		y: winState.y,
 		width: winState.width,
