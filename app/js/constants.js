@@ -19,7 +19,8 @@ const GROUP_TYPES = {
 	lightGroup: 'LightGroup',
 	luminaire: 'Luminaire',
 	lightSource: 'LightSource',
-	room: 'Room'
+	room: 'Room',
+	zone: 'Zone'
 };
 
 const PUSHLINK_MODEL_IDS_AND_IMAGES = new Map()
@@ -97,7 +98,7 @@ const PRODUCT_MODEL_IDS_AND_IMAGES = new Map()
 	.set('SML001', 'motion_sensor.svg')
 	.set('SWT001', 'tap.svg');
 
-const ROOM_CLASSES_AND_IMAGES = new Map()
+const ROOM_OR_ZONE_CLASSES_AND_IMAGES = new Map()
 	.set('Living room', 'living.svg')
 	.set('Gym', 'gym.svg')
 	.set('Kitchen', 'kitchen.svg')
@@ -117,4 +118,26 @@ const ROOM_CLASSES_AND_IMAGES = new Map()
 	.set('Office', 'office.svg')
 	.set('Other', 'other.svg')
 	.set('Carport', 'carport.svg')
-	.set('House', 'house.svg');
+	.set('House', 'house.svg')
+	// since hue API 1.30 ...
+	.set('Home', 'tabbarHome.svg')
+	.set('Downstairs', 'zonesAreasGroundfloor.svg')
+	.set('Upstairs', 'zonesAreasSecondfloor.svg')
+	.set('Top floor', 'zonesAreasFirstfloor.svg')
+	.set('Attic', 'roomsAttic.svg')
+	.set('Guest room', 'roomsGuestroom.svg')
+	.set('Staircase', 'roomsStaircase.svg')
+	.set('Lounge', 'roomsLounge.svg')
+	.set('Man cave', 'roomsMancave.svg')
+	.set('Computer', 'roomsComputer.svg')
+	.set('Studio', 'roomsStudio.svg')
+	.set('Music', 'otherMusic.svg')
+	.set('TV', 'otherWatchingMovie.svg')
+	.set('Reading', 'otherReading.svg')
+	.set('Closet', 'roomsCloset.svg')
+	.set('Storage', 'roomsStorage.svg')
+	.set('Laundry room', 'roomsLaundryroom.svg')
+	.set('Balcony', 'roomsBalcony.svg')
+	.set('Porch', 'roomsPorch.svg')
+	.set('Barbecue', 'roomsSocialtime.svg')
+	.set('Pool', 'roomsPool.svg');

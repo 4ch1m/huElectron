@@ -42,10 +42,10 @@
     });
 
 	Handlebars.registerHelper('getGroupIcon', function (type, clazz) {
-		if (type === GROUP_TYPES.room) {
-			let filename = ROOM_CLASSES_AND_IMAGES.get(clazz);
+		if (type === GROUP_TYPES.room || type === GROUP_TYPES.zone) {
+			let filename = ROOM_OR_ZONE_CLASSES_AND_IMAGES.get(clazz);
 			if (filename !== undefined) {
-				return Handlebars.compile(Handlebars.partials.icon_room)({filename: filename});
+				return Handlebars.compile(Handlebars.partials.icon_room_or_zone)({filename: filename});
 			}
 		}
 
@@ -80,8 +80,8 @@
         Handlebars.registerPartial('icon_question', data);
     }, 'html');
 
-    $.get('hbs/partials/icon-room.hbs', function (data) {
-        Handlebars.registerPartial('icon_room', data);
+    $.get('hbs/partials/icon-room-or-zone.hbs', function (data) {
+        Handlebars.registerPartial('icon_room_or_zone', data);
     }, 'html');
 
     $.get('hbs/partials/navigation-tabs.hbs', function (data) {

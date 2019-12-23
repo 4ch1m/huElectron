@@ -14,7 +14,7 @@ let huE_groups = {
 						// finally... show the groups tab
 						let templateContext = {	groups: groups,
 												types: GROUP_TYPES,
-												classes: Array.from(ROOM_CLASSES_AND_IMAGES.keys()),
+												classes: Array.from(ROOM_OR_ZONE_CLASSES_AND_IMAGES.keys()),
 												availableLights: lights	};
 
 						huE_common.setTemplate(groupsTabContent, 'hbs/groups.hbs', templateContext);
