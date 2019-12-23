@@ -163,6 +163,7 @@
   "users-column-createdate": "Create Date",
   "users-column-lastusedate": "Last Use Date",
   "users-delete": "Delete",
+  "users-api-1_31-warning": "Note: As of API version 1.31 it is no longer possible to delete users via API.",
 
   "pushlink-authentication": "Authentication",
   "pushlink-description-1": "You need to authenticate and create a new user on the hue-bridge.",
