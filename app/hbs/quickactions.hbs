@@ -15,9 +15,13 @@
 <h4>{{I18n 'quickactions-saved'}}</h4>
 
 <table class="table table-sm table-hover">
-	<tbody>
+	<tbody id="quickActions">
 	{{#each quickActions}}
 		<tr id="quickaction-row-{{id}}">
+            <!-- Drag'n'Drop Icon -->
+            <td class="text-lg-center">
+                <i class="fa fa-bars"></i>
+            </td>
 			<!-- Execute Button -->
 			<td class="text-left">
 				<button id="quickaction-execute-{{id}}" class="btn btn-success"><span class="fas fa-play"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-execute'}}</button>
@@ -72,9 +76,23 @@
 					});
 				</script>
 			</td>
+            <!-- hidden save-command -->
+            <td style="display: none">
+                <pre id="quickaction-save-statement-{{id}}">huE_quickActions.save('{{name}}', '{{target}}', '{{targetId}}', '{{on}}', '{{brightness}}', '{{color}}')</pre>
+            </td>
 		</tr>
 	{{/each}}
 	</tbody>
 </table>
+<script>
+    Sortable.create($("#quickActions").get(0), {
+        onEnd: function() {
+            huE_quickActions.delete();
+
+            $("pre[id^='quickaction-save-statement-']").each(function(index, element) {
+                eval(element.textContent);
+            });
+        }});
+</script>
 
 {{/if}}

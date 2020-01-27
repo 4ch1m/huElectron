@@ -70,6 +70,10 @@ let huE_quickActions = {
 		} else {
 			huE_groups.applyQuickAction(quickAction);
 		}
+	},
+
+	delete() {
+		huE_common.store.delete(STORE_KEYS.quickActions);
 	}
 
 };
