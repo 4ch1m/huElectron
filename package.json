@@ -37,7 +37,7 @@
     "handlebars": "4.5.3",
     "hue-hacking-node": "^1.5.0",
     "huejay": "^1.9.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery.i18n": "git+https://github.com/wikimedia/jquery.i18n#4ccb021b6efc8729f07926c503041850b14ab12c",
     "popper.js": "^1.16.1",
     "sortablejs": "^1.10.2",
