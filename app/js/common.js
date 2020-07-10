@@ -5,7 +5,7 @@ let huE_common = {
 	huejayClient: null,
 	hueHacking: require('hue-hacking-node'),
     hueHackingColors: new (require('hue-hacking-node')).HueColors(),
-	uuid: require('uuid/v4'),
+	uuid: require('uuid/dist/v4'),
 	os: require('os'),
 	htmlDecode: function(value) { return $('<textarea/>').html(value).text(); },
 
@@ -30,7 +30,10 @@ let huE_common = {
 		$.get(template, function (data) {
 			let compiledTemplate = Handlebars.compile(data);
 			element.empty();
-			element.html(compiledTemplate(context));
+			element.html(compiledTemplate(context, {
+				allowProtoPropertiesByDefault: true,
+				allowProtoMethodsByDefault: true
+			}));
 		}, 'html')
 	},
 
