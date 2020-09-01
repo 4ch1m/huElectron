@@ -1,7 +1,7 @@
 {
   "name": "huelectron",
   "productName": "huElectron",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "An open-source and cross-platform app for the 'Hue Lighting System' from Philips",
   "license": "MIT",
   "repository": "4ch1m/huElectron",
@@ -37,7 +37,7 @@
     "hue-hacking-node": "^1.6.0",
     "huejay": "^1.9.0",
     "jquery": "^3.5.1",
-    "jquery.i18n": "git+https://github.com/wikimedia/jquery.i18n#4ccb021b6efc8729f07926c503041850b14ab12c",
+    "@wikimedia/jquery.i18n": "^1.0.7",
     "popper.js": "^1.16.1",
     "sortablejs": "^1.10.2",
     "rangeslider.js": "^2.3.3",

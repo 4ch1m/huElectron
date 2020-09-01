@@ -17,18 +17,15 @@
 		<!-- *** -->
 		<script>
 			window.$ = window.jQuery = require('../node_modules/jquery/dist/jquery.js');
-
-			require('../node_modules/jquery.i18n/src/jquery.i18n.js');
-			require('../node_modules/jquery.i18n/src/jquery.i18n.messagestore.js');
-			require('../node_modules/jquery.i18n/src/jquery.i18n.fallbacks.js');
-			require('../node_modules/jquery.i18n/src/jquery.i18n.emitter.js');
-			require('../node_modules/jquery.i18n/src/jquery.i18n.language.js');
-			require('../node_modules/jquery.i18n/src/jquery.i18n.parser.js');
-
-			$.i18n().load( {
-				en: './i18n/en.json'
-			} );
 		</script>
+		<!-- *** -->
+		<script src="../node_modules/@wikimedia/jquery.i18n/src/jquery.i18n.js"></script>
+		<script src="../node_modules/@wikimedia/jquery.i18n/src/jquery.i18n.messagestore.js"></script>
+		<script src="../node_modules/@wikimedia/jquery.i18n/src/jquery.i18n.fallbacks.js"></script>
+		<script src="../node_modules/@wikimedia/jquery.i18n/src/jquery.i18n.emitter.js"></script>
+		<script src="../node_modules/@wikimedia/jquery.i18n/src/jquery.i18n.language.js"></script>
+		<script src="../node_modules/@wikimedia/jquery.i18n/src/jquery.i18n.parser.js"></script>
+		<!-- *** -->
 		<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="../node_modules/@claviska/jquery-minicolors/jquery.minicolors.js"></script>
 		<script src="../node_modules/rangeslider.js/dist/rangeslider.js"></script>
@@ -50,18 +47,22 @@
 		<!-- *** -->
 		<script>
 			$(document).ready(function() {
-				let tabItems = [
-					{id: 'quickactions', label: $.i18n('tabs-quickactions'), iconClass: 'fa fa-play',             on_show: 'huE_quickActions.get()'},
-			        {id: 'bridges',      label: $.i18n('tabs-bridges'),      iconClass: 'fa fa-home',             on_show: 'huE_bridges.get()'     },
-			        {id: 'users',        label: $.i18n('tabs-users'),        iconClass: 'fa fa-user',             on_show: 'huE_users.get()'       },
-			        {id: 'lights',       label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb',        on_show: 'huE_lights.get()'      },
-			        {id: 'groups',       label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: 'huE_groups.get()'      },
-                    {id: 'scenes',       label: $.i18n('tabs-scenes'),       iconClass: 'fa fa-palette',          on_show: 'huE_scenes.get()'      },
-			        {id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     },
-                    {id: 'about',        label: $.i18n('tabs-about'),        iconClass: 'fa fa-info',             on_show: 'huE_about.get()'       }
-				];
+				$.i18n().load({
+					en: './i18n/en.json'
+				}).then(() => {
+					let tabItems = [
+						{id: 'quickactions', label: $.i18n('tabs-quickactions'), iconClass: 'fa fa-play',             on_show: 'huE_quickActions.get()'},
+						{id: 'bridges',      label: $.i18n('tabs-bridges'),      iconClass: 'fa fa-home',             on_show: 'huE_bridges.get()'     },
+						{id: 'users',        label: $.i18n('tabs-users'),        iconClass: 'fa fa-user',             on_show: 'huE_users.get()'       },
+						{id: 'lights',       label: $.i18n('tabs-lights'),       iconClass: 'fa fa-lightbulb',        on_show: 'huE_lights.get()'      },
+						{id: 'groups',       label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: 'huE_groups.get()'      },
+						{id: 'scenes',       label: $.i18n('tabs-scenes'),       iconClass: 'fa fa-palette',          on_show: 'huE_scenes.get()'      },
+						{id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     },
+						{id: 'about',        label: $.i18n('tabs-about'),        iconClass: 'fa fa-info',             on_show: 'huE_about.get()'       }
+					];
 
-                $('#main-content-tabs').html(Handlebars.compile(Handlebars.partials.navigation_tabs)({items: tabItems}));
+					$('#main-content-tabs').html(Handlebars.compile(Handlebars.partials.navigation_tabs)({items: tabItems}));
+				});
 			});
 		</script>
 	</head>
