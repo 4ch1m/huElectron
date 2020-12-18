@@ -29,22 +29,22 @@
   ],
   "dependencies": {
     "@claviska/jquery-minicolors": "^2.3.5",
-    "bootstrap": "^4.5.2",
-    "electron-store": "^6.0.0",
+    "bootstrap": "^4.5.3",
+    "electron-store": "^6.0.1",
     "electron-debug": "^3.1.0",
-    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "handlebars": "4.7.6",
-    "hue-hacking-node": "^1.6.0",
+    "hue-hacking-node": "^1.6.1",
     "huejay": "^1.9.0",
     "jquery": "^3.5.1",
     "@wikimedia/jquery.i18n": "^1.0.7",
     "popper.js": "^1.16.1",
     "sortablejs": "^1.10.2",
     "rangeslider.js": "^2.3.3",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "electron": "^10.1.0",
-    "electron-packager": "^15.1.0"
+    "electron": "^11.1.0",
+    "electron-packager": "^15.2.0"
   }
 }
