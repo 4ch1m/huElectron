@@ -73,9 +73,9 @@ Prebuilt binaries for all target platforms can be found in the [releases](https:
   ```
 
 * Now either ...
-   * build the app for Linux, Mac, and Windows:
+   * build/package the app for Linux, Mac, and Windows:
 	   ```
-	   npm run build
+	   npm run package
 	   ```
 	 (The freshly compiled binaries can then be found in the _dist_-folder.)
 	   
