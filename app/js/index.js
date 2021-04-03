@@ -242,7 +242,8 @@ function createMainWindow() {
 	const win = new BrowserWindow({
 		webPreferences: {
 			nodeIntegration: true,
-			enableRemoteModule: true
+			enableRemoteModule: true,
+			contextIsolation: false,
 		},
 		icon: nativeImage.createFromPath(__dirname + '/../img/icon.png'),
 		x: mainWindowStateKeeper.x,
