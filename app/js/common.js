@@ -3,8 +3,8 @@ let huE_common = {
 	store: new (require('electron-store'))(),
 	huejay: require('huejay'),
 	huejayClient: null,
-	hueHacking: require('hue-hacking-node'),
-    hueHackingColors: new (require('hue-hacking-node')).HueColors(),
+	hueHackingInterfaces: require('hue-hacking-node/dist/hue-interfaces'),
+    hueHackingColors: require('hue-hacking-node/dist/hue-colors'),
 	uuid: require('uuid').v4,
 	os: require('os'),
 	htmlDecode: function(value) { return $('<textarea/>').html(value).text(); },
@@ -85,7 +85,7 @@ let huE_common = {
 
 	convertHexColorToXY(hex) {
 		let hexValue = hex.startsWith('#') ? hex.substring(1): hex;
-		let xyPoint = huE_common.hueHackingColors.getCIEColor(hexValue);
+		let xyPoint = (new huE_common.hueHackingColors.HueColors()).getCIEColor(hexValue);
 
 		return [xyPoint.x, xyPoint.y];
 	},
