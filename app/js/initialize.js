@@ -11,7 +11,7 @@
 	});
 
 	Handlebars.registerHelper('ifNotCond', function (v1, v2, options) {
-		if (v1 != v2) {
+		if (v1 !== v2) {
 			return options.fn(this);
 		}
 		return options.inverse(this);
@@ -20,7 +20,7 @@
 	Handlebars.registerHelper('getPushlinkIcon', function (modelId) {
 		let pushlinkImage = PUSHLINK_MODEL_IDS_AND_IMAGES.get(modelId);
 
-		if (pushlinkImage == undefined) {
+		if (pushlinkImage === undefined) {
 			// get the last entry
 			PUSHLINK_MODEL_IDS_AND_IMAGES.forEach((image, id) => {
 				pushlinkImage = image;
@@ -52,8 +52,10 @@
 		return Handlebars.compile(Handlebars.partials.icon_question)();
 	});
 
-	Handlebars.registerHelper('I18n', function(key) {
-		return $.i18n(key);
+	Handlebars.registerHelper('I18n', function(key, ...params) {
+		return $.i18n(key, params.filter(param => {
+			return typeof param === 'string';
+		}));
 	});
 
 	Handlebars.registerHelper('getBrightnessInPercent', function(brightnessValue) {
@@ -118,7 +120,7 @@
 					huE_common.huejayClient.bridge.get()
 						.then(bridge => {
 							// check if stored bridge-id matches the connected bridge-id
-							if (bridge.id == huE_common.store.get(STORE_KEYS.bridgeId)) {
+							if (bridge.id === huE_common.store.get(STORE_KEYS.bridgeId)) {
 								// check if we're authenticated
 								huE_common.huejayClient.bridge.isAuthenticated()
 									.then(() => {

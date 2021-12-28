@@ -1,5 +1,6 @@
 let huE_common = {
 
+	shell: require('electron').shell,
 	store: new (require('electron-store'))(),
 	huejay: require('huejay'),
 	huejayClient: null,
@@ -55,7 +56,7 @@ let huE_common = {
 			successModal.on('hidden.bs.modal', onHiddenCallback);
 		}
 
-		$('#success-modal').modal();
+		successModal.modal();
 	},
 
 	showConfirmation(label, message, confirmationCallback) {
@@ -72,27 +73,31 @@ let huE_common = {
 	},
 
 	tolerantStateChangeErrorHandling(error, label) {
-		if (error.type == 201) {
+		if (error.type === 201) {
 			// do nothing here;
 			// error-code 201 means "not modifiable; device is set to off"
 			//
 			// this will most likely be returned when trying to change the
 			// brightness or color of a device while it is turned off
 		} else {
-			huE_common.showError($.i18n('error-label-general'), error.message);
+			this.showError(label, error.message);
 		}
 	},
 
 	convertHexColorToXY(hex) {
 		let hexValue = hex.startsWith('#') ? hex.substring(1): hex;
-		let xyPoint = (new huE_common.hueHackingColors.HueColors()).getCIEColor(hexValue);
+		let xyPoint = (new this.hueHackingColors.HueColors()).getCIEColor(hexValue);
 
 		return [xyPoint.x, xyPoint.y];
 	},
 
 	openExternal(event, link) {
         event.preventDefault();
-        require("electron").shell.openExternal(link);
+		this.shell.openExternal(link);
         return false;
+	},
+
+	getAppVersion() {
+		return this.store.get('appVersion');
 	}
 };

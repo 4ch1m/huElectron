@@ -73,13 +73,13 @@ let huE_groups = {
 	},
 
 	save(groupData) {
-		if (groupData.id != '') {
+		if (groupData.id !== '') {
 			// modify existing group
 			huE_common.huejayClient.groups.getById(groupData.id)
 				.then(group => {
 					group.name = groupData.name;
 					group.type = groupData.type;
-					if (groupData.type == GROUP_TYPES.room) {
+					if (groupData.type === GROUP_TYPES.room) {
 						group.class = groupData.class;
 					}
 					group.lightIds = groupData.lightIds;
@@ -98,7 +98,7 @@ let huE_groups = {
 			let newGroup = new huE_common.huejayClient.groups.Group;
 			newGroup.name = groupData.name;
 			newGroup.type = groupData.type;
-			if (groupData.type == GROUP_TYPES.room) {
+			if (groupData.type === GROUP_TYPES.room) {
 				newGroup.class = groupData.class;
 			}
 			newGroup.lightIds = groupData.lightIds;

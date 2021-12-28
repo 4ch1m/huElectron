@@ -19,7 +19,7 @@
 	transform: rotate(90deg);
 }
 
-modal-header-success {
+.modal-header-success {
 	background-color: #5cb85c;
 }
 

@@ -48,12 +48,12 @@ let huE_quickActions = {
 			let newQuickActions = [];
 
 			oldQuickActions.forEach(function(quickAction) {
-				if (quickAction.id != id) {
+				if (quickAction.id !== id) {
 					newQuickActions.push(quickAction);
 				}
 			});
 
-			if (newQuickActions.length != oldQuickActions.length) {
+			if (newQuickActions.length !== oldQuickActions.length) {
 				huE_common.store.set(STORE_KEYS.quickActions, newQuickActions);
 			}
 		}
@@ -65,7 +65,7 @@ let huE_quickActions = {
 							brightness: brightness,
 							color: color };
 
-		if (target == 'light') {
+		if (target === 'light') {
 			huE_lights.applyQuickAction(quickAction);
 		} else {
 			huE_groups.applyQuickAction(quickAction);

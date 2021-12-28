@@ -10,7 +10,7 @@ let huE_bridges = {
 				// separate the connected bridge from all others
 				let otherBridges = [];
 				for (let discoveredBridge of bridges) {
-					if (discoveredBridge.ip != huE_common.store.get(STORE_KEYS.bridgeIp)) {
+					if (discoveredBridge.ip !== huE_common.store.get(STORE_KEYS.bridgeIp)) {
 						otherBridges.push(discoveredBridge);
 					}
 				}
