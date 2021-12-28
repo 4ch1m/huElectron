@@ -6,7 +6,7 @@
 
 Branch | Status | Dependencies
 :------: | :------: | :------:
-master | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=master)](https://travis-ci.org/4ch1m/huElectron) | ![Dependencies](https://david-dm.org/4ch1m/huElectron.svg)
+master | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=master)](https://travis-ci.org/4ch1m/huElectron) | ![Dependencies](https://img.shields.io/librariesio/github/4ch1m/huElectron)
 development | [![Build Status](https://travis-ci.org/4ch1m/huElectron.svg?branch=development)](https://travis-ci.org/4ch1m/huElectron) | n/a
 
 ## Screenshots
