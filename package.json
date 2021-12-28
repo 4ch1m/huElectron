@@ -15,7 +15,6 @@
     "start": "electron .",
     "test": "echo 'tests disabled'",
     "package": "electron-packager . --platform=all --out=dist --overwrite --asar",
-    "package-4-travis": "electron-packager . --platform=linux --asar",
     "postinstall": "submodules-install"
   },
   "submodules": [
