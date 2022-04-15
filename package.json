@@ -1,7 +1,7 @@
 {
   "name": "huelectron",
   "productName": "huElectron",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "An open-source and cross-platform app for the 'Hue Lighting System' from Philips",
   "license": "MIT",
   "repository": "4ch1m/huElectron",
@@ -32,7 +32,7 @@
   ],
   "dependencies": {
     "@claviska/jquery-minicolors": "^2.3.6",
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "@wikimedia/jquery.i18n": "^1.0.7",
     "bootstrap": "^4.6.1",
     "electron-debug": "^3.2.0",
@@ -43,12 +43,12 @@
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "rangeslider.js": "^2.3.3",
-    "sortablejs": "^1.14.0",
+    "sortablejs": "^1.15.0",
     "uuid": "^8.3.2",
     "submodules-install": "^1.0.2"
   },
   "devDependencies": {
-    "electron": "^16.0.5",
+    "electron": "^18.0.4",
     "electron-packager": "^15.4.0"
   }
 }
