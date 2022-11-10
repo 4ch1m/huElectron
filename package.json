@@ -48,7 +48,7 @@
     "submodules-install": "^1.0.2"
   },
   "devDependencies": {
-    "electron": "^18.0.4",
+    "electron": "^18.3.7",
     "electron-packager": "^15.4.0"
   }
 }
