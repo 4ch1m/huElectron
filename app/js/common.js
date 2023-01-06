@@ -99,5 +99,9 @@ let huE_common = {
 
 	getAppVersion() {
 		return this.store.get('appVersion');
+	},
+
+	getAppSystemLocale() {
+		return this.store.get('appSystemLocale')
 	}
 };

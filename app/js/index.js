@@ -271,10 +271,11 @@ app.on('activate', () => {
 });
 
 app.on('ready', () => {
+	store.set('appVersion', app.getVersion());
+	store.set('appSystemLocale', app.getSystemLocale());
+
 	let builtMenu = Menu.buildFromTemplate(menuTemplate);
 	Menu.setApplicationMenu(builtMenu);
 
 	mainWindow = createMainWindow();
 });
-
-store.set('appVersion', app.getVersion());
