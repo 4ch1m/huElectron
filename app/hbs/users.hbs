@@ -1,7 +1,3 @@
-<div>
-    <span class="badge badge-warning">{{{I18n 'users-api-1_31-warning' '<small>https://developers.meethue.com/develop/hue-api/api-documentation-changelog/</small>'}}}</span>
-</div>
-
 <table class="table table-sm table-hover">
 	<thead>
 		<tr>
@@ -9,7 +5,6 @@
 			<th scope="col" class="text-nowrap">{{I18n 'users-column-devicetype'}}</th>
 			<th scope="col" class="text-nowrap">{{I18n 'users-column-createdate'}}</th>
 			<th scope="col" class="text-nowrap">{{I18n 'users-column-lastusedate'}}</th>
-			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,17 +16,6 @@
 			<td>{{deviceType}}</td>
 			<td>{{created}}</td>
 			<td>{{lastUsed}}</td>
-			<td>
-				{{#ifNotCond username ../usedUser}}
-				<button id="delete-button-user-{{username}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'users-delete'}}</button>
-				<script>
-					$('#delete-button-user-{{username}}').on('click', function() {
-					    let confirmationCallback = function() { huE_users.deleteByName('{{username}}') };
-					    huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-user'}}', confirmationCallback);
-					});
-				</script>
-				{{/ifNotCond}}
-			</td>
 		</tr>
 	{{/each}}
 	</tbody>

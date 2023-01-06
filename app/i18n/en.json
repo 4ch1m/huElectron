@@ -163,8 +163,6 @@
   "users-column-devicetype": "Device Type",
   "users-column-createdate": "Create Date",
   "users-column-lastusedate": "Last Use Date",
-  "users-delete": "Delete",
-  "users-api-1_31-warning": "Note: As of API version 1.31 it is no longer possible to delete users via API (see: '$1').",
 
   "pushlink-authentication": "Authentication",
   "pushlink-description-1": "You need to authenticate and create a new user on the hue-bridge.",
@@ -188,7 +186,6 @@
   "success-msg-sensor-settings": "Sensor succesfully updated.",
 
   "confirmation-label-delete-confirmation": "Delete Confirmation",
-  "confirmation-msg-delete-user": "Really delete this user?",
   "confirmation-msg-delete-group": "Really delete this group?",
   "confirmation-msg-delete-light": "Really delete this light?",
   "confirmation-msg-delete-scene": "Really delete this scene?"
