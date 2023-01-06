@@ -5,6 +5,7 @@
             <th scope="col">{{I18n 'sensors-column-name'}}</th>
             <th scope="col">{{I18n 'sensors-column-id'}}</th>
             <th scope="col">{{I18n 'sensors-column-type'}}</th>
+            <th scope="col">{{I18n 'sensors-column-model-id'}}</th>
             <th scope="col"></th>
         </tr>
 	</thead>
@@ -19,6 +20,7 @@
 			</td>
 			<td>{{id}}</td>
 			<td>{{type}}</td>
+			<td>{{modelId}}</td>
 			<td>
 				<button id="edit-button-sensor-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'sensors-edit'}}</button>
 				<script>

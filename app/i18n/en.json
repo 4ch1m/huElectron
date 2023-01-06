@@ -148,6 +148,7 @@
   "sensors-column-name": "Name",
   "sensors-column-id": "ID",
   "sensors-column-type": "Type",
+  "sensors-column-model-id": "Model ID",
   "sensors-edit-modal-label": "Edit Sensor",
   "sensors-edit-modal-name": "Name",
   "sensors-edit-modal-close": "Close",
