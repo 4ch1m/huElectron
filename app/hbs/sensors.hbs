@@ -1,4 +1,4 @@
-<table class="table table-sm table-hover">
+<table id="sensors-table" class="table table-sm table-hover">
 	<thead>
         <tr>
             <th scope="col"></th>
@@ -36,6 +36,15 @@
 	{{/each}}
 	</tbody>
 </table>
+<script>
+    $('#sensors-table').DataTable({
+        pageLength: 50,
+        columnDefs: [{
+            orderable: false,
+            targets: [-1, 0]
+        }]
+    });
+</script>
 
 <!-- Edit Modal -->
 <div class="modal fade" id="sensor-edit-modal" tabindex="-1" role="dialog">

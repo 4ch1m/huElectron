@@ -62,11 +62,6 @@
 		return Math.round(brightnessValue / (MAX_BRIGHTNESS_VALUE / 100));
 	});
 
-	Handlebars.registerHelper('getLocaleDateAndTimeString', function(date) {
-		let _date = new Date(Date.parse(date));
-		return `${_date.toLocaleDateString(huE_common.getAppSystemLocale())} (${_date.toLocaleTimeString(huE_common.getAppSystemLocale())})`;
-	});
-
     // -----------
     // HB-partials
     // -----------

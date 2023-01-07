@@ -1,4 +1,4 @@
-<table class="table table-sm table-hover">
+<table id="users-table" class="table table-sm table-hover">
 	<thead>
 		<tr>
 			<th scope="col" class="text-nowrap">{{I18n 'users-column-username'}}</th>
@@ -14,9 +14,18 @@
 				<strong>{{username}}</strong>
 			</td>
 			<td>{{deviceType}}</td>
-			<td>{{getLocaleDateAndTimeString created}}</td>
-			<td>{{getLocaleDateAndTimeString lastUsed}}</td>
+			<td>{{created}}</td>
+			<td>{{lastUsed}}</td>
 		</tr>
 	{{/each}}
 	</tbody>
 </table>
+<script>
+    $('#users-table').DataTable({
+        pageLength: 50,
+        columnDefs: [{
+            targets: [-1, -2],
+            render: DataTable.render.datetime()
+        }]
+    });
+</script>
