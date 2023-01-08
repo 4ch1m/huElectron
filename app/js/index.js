@@ -85,8 +85,8 @@ const menuTemplate = [
 									buttons: ['OK', 'Cancel'],
 									message: 'Do you really want to reset all stored settings?' };
 
-					let callback = function(buttonIndex) {
-						if (buttonIndex == 0) {
+					let callback = buttonIndex => {
+						if (buttonIndex === 0) {
 							store.clear();
 							mainWindow.loadFile(index);
 						}

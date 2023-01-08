@@ -18,10 +18,10 @@ let huE_bridges = {
 				// now fetch the details for the currently connected bridge and then show the template
 				huE_common.huejayClient.bridge.get()
 					.then(bridge => {
-						let templateContext = {	connectedBridge: bridge,
-												otherBridges: otherBridges };
-
-						huE_common.setTemplate(bridgesTabContent, 'hbs/bridges.hbs', templateContext);
+						huE_common.setTemplate(bridgesTabContent, 'hbs/bridges.hbs', {
+							connectedBridge: bridge,
+							otherBridges: otherBridges
+						});
 					});
 			});
 	},
@@ -36,13 +36,14 @@ let huE_bridges = {
 		client.bridge.ping()
 			.then(() => {
 				// ping was successful; show pushlink
-				let templateContext = {	bridgeIp: bridgeIp,
-										bridgeId: bridgeId };
+				huE_common.setTemplate(pushLinkContent, 'hbs/pushlink.hbs', {
+					bridgeIp: bridgeIp,
+					bridgeId: bridgeId
+				});
 
-				huE_common.setTemplate(pushLinkContent, 'hbs/pushlink.hbs', templateContext);
 				huE_common.switchToMainContentElement('pushlink');
 			})
-			.catch(error => {
+			.catch(() => {
 				huE_common.showError($.i18n('error-label-general'), $.i18n('error-msg-ping-failed'));
 				huE_bridges.showBridgeDiscovery()
 			});
@@ -54,7 +55,7 @@ let huE_bridges = {
 		});
 
 		let user = new client.users.User;
-		user.deviceType = APP_BRIDGEUSER_DEVICETYPE + '#' + huE_common.os.hostname();
+		user.deviceType = `${APP_BRIDGEUSER_DEVICETYPE}#${huE_common.os.hostname()}`;
 
 		client.users.create(user)
 			.then(user => {
@@ -88,9 +89,11 @@ let huE_bridges = {
 
 		huE_common.huejay.discover({strategy: 'all'})
 			.then(bridges => {
-				huE_common.setTemplate(bridgeDiscoveryContent, 'hbs/bridge-discovery.hbs', {bridges: bridges});
+				huE_common.setTemplate(bridgeDiscoveryContent, 'hbs/bridge-discovery.hbs', {
+					bridges: bridges
+				});
 			})
-			.catch(error => {
+			.catch(() => {
 				huE_common.showError($.i18n('error-label-general'), $.i18n('error-msg-bridge-discovery-failed'));
 			});
 	},
@@ -102,8 +105,8 @@ let huE_bridges = {
 
 				return huE_common.huejayClient.bridge.save(bridge);
 			})
-			.then(bridge => {
-				let onHiddenCallback = function() { huE_bridges.get() };
+			.then(() => {
+				let onHiddenCallback = () => { huE_bridges.get() };
 				huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-bridge-settings'), onHiddenCallback);
 			})
 			.catch(error => {

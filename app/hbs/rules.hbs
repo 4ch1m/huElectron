@@ -1,0 +1,89 @@
+<table id="rules-table" class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th scope="col">{{I18n 'rules-column-name'}}</th>
+        <th scope="col">{{I18n 'rules-column-id'}}</th>
+        <th scope="col">{{I18n 'rules-column-owner'}}</th>
+        <th scope="col">{{I18n 'rules-column-lasttriggered'}}</th>
+        <th scope="col">{{I18n 'rules-column-timestriggered'}}</th>
+        <th scope="col">{{I18n 'rules-column-status'}}</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each rules}}
+        <tr>
+            <td>
+                <strong>{{name}}</strong>
+            </td>
+            <td>{{id}}</td>
+            <td>{{owner}}</td>
+            <td>{{lastTriggered}}</td>
+            <td>{{timesTriggered}}</td>
+            <td>{{status}}</td>
+            <td>
+                <button id="edit-button-rule-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'rules-edit'}}</button>
+                <script>
+                    $('#edit-button-rule-{{id}}').on('click', function() {
+                        $('#rule-edit-modal-id').val('{{id}}');
+                        $('#rule-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
+
+                        $('#rule-edit-modal').modal('show');
+                    });
+                </script>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<script>
+    $('#rules-table').DataTable({
+        pageLength: 50,
+        columnDefs: [
+            {
+                render: DataTable.render.datetime(),
+                targets: 3
+            },
+            {
+                orderable: false,
+                targets: -1
+            }
+        ]
+    });
+</script>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="rule-edit-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" id="rule-edit-modal-label">{{I18n 'rules-edit-modal-label'}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input id="rule-edit-modal-id" type="hidden">
+                    <div class="form-group">
+                        <label for="rule-edit-modal-name" class="control-label">{{I18n 'rules-edit-modal-name'}}</label>
+                        <input type="text" class="form-control" id="rule-edit-modal-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'rules-edit-modal-close'}}</button>
+                <button type="button" class="btn btn-primary text-left" id="rule-edit-modal-save" data-dismiss="modal">{{I18n 'rules-edit-modal-save'}}</button>
+                <script>
+                    $('#rule-edit-modal-save').click(function() {
+                        let id = $('#rule-edit-modal-id').val();
+                        let name = $('#rule-edit-modal-name').val();
+
+                        huE_rules.save({
+                            id: id,
+                            name: name
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

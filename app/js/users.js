@@ -7,7 +7,9 @@ let huE_users = {
 
 		huE_common.huejayClient.users.getAll()
 			.then(users => {
-				huE_common.setTemplate(usersTabContent, 'hbs/users.hbs', {users: users});
+				huE_common.setTemplate(usersTabContent, 'hbs/users.hbs', {
+					users: users
+				});
 			});
 	}
 

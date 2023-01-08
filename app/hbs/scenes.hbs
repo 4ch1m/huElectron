@@ -67,10 +67,12 @@
 <script>
     $('#scenes-table').DataTable({
         pageLength: 50,
-        columnDefs: [{
-            orderable: false,
-            targets: [-2, -1]
-        }]
+        columnDefs: [
+            {
+                orderable: false,
+                targets: [-2, -1]
+            }
+        ]
     });
 </script>
 
@@ -118,9 +120,11 @@
                             }
                         });
 
-                        huE_scenes.save({id: id,
-                                         name: name,
-                                         lightIds: lightIds});
+                        huE_scenes.save({
+                            id: id,
+                            name: name,
+                            lightIds: lightIds
+                        });
                     });
                 </script>
             </div>

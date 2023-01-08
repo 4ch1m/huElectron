@@ -39,10 +39,12 @@
 <script>
     $('#sensors-table').DataTable({
         pageLength: 50,
-        columnDefs: [{
-            orderable: false,
-            targets: [-1, 0]
-        }]
+        columnDefs: [
+            {
+                orderable: false,
+                targets: [-1, 0]
+            }
+        ]
     });
 </script>
 
@@ -71,8 +73,10 @@
 						let id = $('#sensor-edit-modal-id').val();
 						let name = $('#sensor-edit-modal-name').val();
 
-						huE_sensors.save({id: id,
-										  name: name});
+						huE_sensors.save({
+                            id: id,
+                            name: name
+                        });
 					});
 				</script>
 			</div>

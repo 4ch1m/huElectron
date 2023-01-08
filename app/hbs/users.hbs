@@ -23,9 +23,11 @@
 <script>
     $('#users-table').DataTable({
         pageLength: 50,
-        columnDefs: [{
-            targets: [-1, -2],
-            render: DataTable.render.datetime()
-        }]
+        columnDefs: [
+            {
+                render: DataTable.render.datetime(),
+                targets: [-1, -2]
+            }
+        ]
     });
 </script>
