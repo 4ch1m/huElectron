@@ -70,6 +70,12 @@
 					];
 
 					$('#main-content-tabs').html(Handlebars.compile(Handlebars.partials.navigation_tabs)({items: tabItems}));
+
+					for (let tabItem of tabItems) {
+						if (!(huE_common.store.get(`showTab.${tabItem.id}`, true))) {
+							$(`#${tabItem.id}`).hide();
+						}
+					}
 				});
 			});
 		</script>
