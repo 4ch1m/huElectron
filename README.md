@@ -4,7 +4,16 @@
 
 > An open-source and cross-platform app for the [Hue Lighting System](https://www2.meethue.com) from _Philips_ - built on [Electron](https://electronjs.org).
 
-![license](https://img.shields.io/github/license/4ch1m/huElectron) ![dependencies](https://img.shields.io/librariesio/github/4ch1m/huElectron)
+## Table of Contents
+
+* [Screenshots](#screenshots)
+* [Motivation](#motivation)
+* [Features](#features)
+* [ToDo](#todo)
+* [Binaries](#binaries)
+* [Build It Yourself](#build-it-yourself)
+* [Resources](#resources)
+* [License](#license)
 
 ## Screenshots
 
@@ -16,7 +25,7 @@ While there are many mobile-apps available for the lighting system from _Philips
 
 Since most of these desktop-apps are closed-source and only available for _Windows_ / _Mac_, I've decided to create an open-source app which will run on all popular systems; including Linux.
 
-Also this is my first _Electron_-app; so it served as some kind of playground for me. :wink:
+Also, this is my first _Electron_-app; so it served as some kind of playground for me. :wink:
 
 ## Features
 
@@ -29,21 +38,18 @@ The current feature-set includes:
   * groups
   * (scenes)
   * (sensors)
+  * (schedules)
+  * (rules)
 * quick-actions (set state/color/brightness with one mouse-click) 
 * show detailed information about each light/group
 
-## TODO
+## ToDo
 
-__huElectron__ is still at an early development stage; the following features will be implemented in future releases:
+_huElectron_ is still at an early development stage; the following features will be implemented in future releases:
 
-* manage schedules
-* manage rules
 * manage portal services
-* implement discovery of new lights
-* implement discovery of new new sensors
-* enhance bridge-management (zigbeeChannel, proxyPort, timeZone, etc.)
-* enhance sensor-management (type, virtual sensor creation, etc.)
-* enhance scene-management
+* implement discovery of new lights/sensors
+* enhance management of bridges, sensors, scenes, schedules, and rules
 
 Oh, and although I've tried to make the app look somewhat decent by extensively using [Bootstrap](https://getbootstrap.com), of course there's always room for improvement/beautification.
 So any help/contribution from web-design-wizards is highly welcome. :smiley:
@@ -70,27 +76,26 @@ Prebuilt binaries for all target platforms can be found in the [releases](https:
   ```
 
 * Now either ...
-   * build/package the app for Linux, Mac, and Windows:
+   * build/package the app for Linux, Mac, and Windows with
 	   ```
 	   npm run package
 	   ```
 	 (The freshly compiled binaries can then be found in the _dist_-folder.)
-	   
-   * or just start it right away:
+   * or just start it right away with
 	   ```
 	   npm start
 	   ```
 
-## Author
+## Resources
 
-:email: [Achim Seufert](mailto:contact@huelectron.achimonline.de)
+hue product icons (mostly) taken from (or based on) the official _Icon Pack_:  
+* [https://developers.meethue.com/develop/application-design-guidance/icon-pack](https://developers.meethue.com/develop/application-design-guidance/icon-pack) (login needed)
+
+Unfortunately this resource doesn't get updated by Philips anymore (the latest release is from 2019). :worried:
+
+Additional icons pulled from:
+* [hass-hue-icons](https://github.com/arallsopp/hass-hue-icons)
 
 ## License
 
 Please read the [license](license) file.
-
----
-
-Developed with:
-
-![IntelliJ IDEA](https://www.jetbrains.com/idea/opensource/img/all/banners/idea88x31_blue.gif)

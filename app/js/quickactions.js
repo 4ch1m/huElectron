@@ -7,10 +7,10 @@ let huE_quickActions = {
 
 		huE_common.huejayClient.groups.getById(0)
 			.then(group => {
-				let templateContext = {	group: group,
-										quickActions: huE_quickActions.getAll()	};
-
-				huE_common.setTemplate(quickActionsTabContent, 'hbs/quickactions.hbs', templateContext);
+				huE_common.setTemplate(quickActionsTabContent, 'hbs/quickactions.hbs', {
+					group: group,
+					quickActions: huE_quickActions.getAll()
+				});
 			});
 	},
 
@@ -21,13 +21,15 @@ let huE_quickActions = {
 			quickActions = huE_common.store.get(STORE_KEYS.quickActions);
 		}
 
-		let quickAction = { id: huE_common.uuid(),
-							name: name,
-							target: target,
-							targetId: targetId,
-							on: on,
-							brightness: brightness,
-							color: color };
+		let quickAction = {
+			id: huE_common.uuid(),
+			name: name,
+			target: target,
+			targetId: targetId,
+			on: on,
+			brightness: brightness,
+			color: color
+		};
 
 		quickActions.push(quickAction);
 
@@ -47,7 +49,7 @@ let huE_quickActions = {
 			let oldQuickActions = huE_common.store.get(STORE_KEYS.quickActions);
 			let newQuickActions = [];
 
-			oldQuickActions.forEach(function(quickAction) {
+			oldQuickActions.forEach(quickAction => {
 				if (quickAction.id !== id) {
 					newQuickActions.push(quickAction);
 				}
@@ -60,10 +62,12 @@ let huE_quickActions = {
 	},
 
 	execute(target, targetId, on, brightness, color) {
-		let quickAction = { id: targetId,
-							on: on,
-							brightness: brightness,
-							color: color };
+		let quickAction = {
+			id: targetId,
+			on: on,
+			brightness: brightness,
+			color: color
+		};
 
 		if (target === 'light') {
 			huE_lights.applyQuickAction(quickAction);

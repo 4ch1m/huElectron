@@ -1,10 +1,11 @@
-<table class="table table-sm table-hover">
+<table id="sensors-table" class="table table-sm table-hover">
 	<thead>
         <tr>
             <th scope="col"></th>
             <th scope="col">{{I18n 'sensors-column-name'}}</th>
             <th scope="col">{{I18n 'sensors-column-id'}}</th>
             <th scope="col">{{I18n 'sensors-column-type'}}</th>
+            <th scope="col">{{I18n 'sensors-column-model-id'}}</th>
             <th scope="col"></th>
         </tr>
 	</thead>
@@ -19,6 +20,7 @@
 			</td>
 			<td>{{id}}</td>
 			<td>{{type}}</td>
+			<td>{{modelId}}</td>
 			<td>
 				<button id="edit-button-sensor-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'sensors-edit'}}</button>
 				<script>
@@ -34,6 +36,17 @@
 	{{/each}}
 	</tbody>
 </table>
+<script>
+    $('#sensors-table').DataTable({
+        pageLength: 50,
+        columnDefs: [
+            {
+                orderable: false,
+                targets: [-1, 0]
+            }
+        ]
+    });
+</script>
 
 <!-- Edit Modal -->
 <div class="modal fade" id="sensor-edit-modal" tabindex="-1" role="dialog">
@@ -60,8 +73,10 @@
 						let id = $('#sensor-edit-modal-id').val();
 						let name = $('#sensor-edit-modal-name').val();
 
-						huE_sensors.save({id: id,
-										  name: name});
+						huE_sensors.save({
+                            id: id,
+                            name: name
+                        });
 					});
 				</script>
 			</div>

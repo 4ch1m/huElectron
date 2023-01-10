@@ -12,12 +12,12 @@ let huE_groups = {
 				huE_common.huejayClient.lights.getAll()
 					.then(lights => {
 						// finally... show the groups tab
-						let templateContext = {	groups: groups,
-												types: GROUP_TYPES,
-												classes: Array.from(ROOM_OR_ZONE_CLASSES_AND_IMAGES.keys()),
-												availableLights: lights	};
-
-						huE_common.setTemplate(groupsTabContent, 'hbs/groups.hbs', templateContext);
+						huE_common.setTemplate(groupsTabContent, 'hbs/groups.hbs', {
+							groups: groups,
+							types: GROUP_TYPES,
+							classes: Array.from(ROOM_OR_ZONE_CLASSES_AND_IMAGES.keys()),
+							availableLights: lights
+						});
 					});
 			});
 	},
@@ -86,8 +86,8 @@ let huE_groups = {
 
 					return huE_common.huejayClient.groups.save(group);
 				})
-				.then(group => {
-					let onHiddenCallback = function() { huE_groups.get() };
+				.then(() => {
+					let onHiddenCallback = () => { huE_groups.get() };
 					huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-group-settings'), onHiddenCallback);
 				})
 				.catch(error => {
@@ -104,8 +104,8 @@ let huE_groups = {
 			newGroup.lightIds = groupData.lightIds;
 
 			huE_common.huejayClient.groups.create(newGroup)
-				.then(group => {
-					let onHiddenCallback = function() { huE_groups.get() };
+				.then(() => {
+					let onHiddenCallback = () => { huE_groups.get() };
 					huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-group-settings'), onHiddenCallback);
 				})
 				.catch(error => {
@@ -117,7 +117,7 @@ let huE_groups = {
 	deleteById(id) {
 		huE_common.huejayClient.groups.delete(id)
 			.then(() => {
-				let onHiddenCallback = function() { huE_groups.get() };
+				let onHiddenCallback = () => { huE_groups.get() };
 				huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-group-settings'), onHiddenCallback);
 			})
 			.catch(error => {

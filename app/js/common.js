@@ -8,10 +8,10 @@ let huE_common = {
     hueHackingColors: require('hue-hacking-node/dist/hue-colors'),
 	uuid: require('uuid').v4,
 	os: require('os'),
-	htmlDecode: function(value) { return $('<textarea/>').html(value).text(); },
+	htmlDecode: value => { return $('<textarea/>').html(value).text(); },
 
 	switchToMainContentElement(elementSuffix) {
-		$('div[id^="main-content-"]').each(function(index, element) {
+		$('div[id^="main-content-"]').each((index, element) => {
 			if (element.id.endsWith(elementSuffix)) {
 				$(element).show();
 			} else {
@@ -28,7 +28,7 @@ let huE_common = {
 	},
 
 	setTemplate(element, template, context) {
-		$.get(template, function (data) {
+		$.get(template, data => {
 			let compiledTemplate = Handlebars.compile(data);
 			element.empty();
 			element.html(compiledTemplate(context, {
@@ -99,5 +99,9 @@ let huE_common = {
 
 	getAppVersion() {
 		return this.store.get('appVersion');
+	},
+
+	getAppSystemLocale() {
+		return this.store.get('appSystemLocale')
 	}
 };

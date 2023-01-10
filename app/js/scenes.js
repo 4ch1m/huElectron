@@ -12,10 +12,10 @@ let huE_scenes = {
                 huE_common.huejayClient.lights.getAll()
                     .then(lights => {
                         // finally... show the scenes tab
-                        let templateContext = {	scenes: scenes,
-                                                availableLights: lights	};
-
-                        huE_common.setTemplate(scenesTabContent, 'hbs/scenes.hbs', templateContext);
+                        huE_common.setTemplate(scenesTabContent, 'hbs/scenes.hbs', {
+                            scenes: scenes,
+                            availableLights: lights
+                        });
                     });
 			});
 	},
@@ -23,7 +23,7 @@ let huE_scenes = {
     deleteById(id) {
         huE_common.huejayClient.scenes.delete(id)
             .then(() => {
-                let onHiddenCallback = function() { huE_scenes.get() };
+                let onHiddenCallback = () => { huE_scenes.get() };
                 huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-scene-settings'), onHiddenCallback);
             })
             .catch(error => {
@@ -39,8 +39,8 @@ let huE_scenes = {
 
                 return huE_common.huejayClient.scenes.save(scene);
             })
-            .then(scene => {
-                let onHiddenCallback = function() { huE_scenes.get() };
+            .then(() => {
+                let onHiddenCallback = () => { huE_scenes.get() };
                 huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-scene-settings'), onHiddenCallback);
             })
             .catch(error => {

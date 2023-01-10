@@ -7,10 +7,10 @@ let huE_lights = {
 
 		huE_common.huejayClient.lights.getAll()
 			.then(lights => {
-				let templateContext = {	lights: lights,
-										lightAlerts: LIGHT_ALERTS };
-
-				huE_common.setTemplate(lightsTabContent, 'hbs/lights.hbs', templateContext);
+				huE_common.setTemplate(lightsTabContent, 'hbs/lights.hbs', {
+					lights: lights,
+					lightAlerts: LIGHT_ALERTS
+				});
 			});
 	},
 
@@ -58,8 +58,8 @@ let huE_lights = {
 
 				return huE_common.huejayClient.lights.save(light);
 			})
-			.then(light => {
-				let onHiddenCallback = function() { huE_lights.get() };
+			.then(() => {
+				let onHiddenCallback = () => { huE_lights.get() };
 				huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-light-settings'), onHiddenCallback);
 			})
 			.catch(error => {
@@ -70,7 +70,7 @@ let huE_lights = {
 	deleteById(id) {
 		huE_common.huejayClient.lights.delete(id)
 			.then(() => {
-				let onHiddenCallback = function() { huE_lights.get() };
+				let onHiddenCallback = () => { huE_lights.get() };
 				huE_common.showSuccess($.i18n('success-label-general'), $.i18n('success-msg-light-settings'), onHiddenCallback);
 			})
 			.catch(error => {

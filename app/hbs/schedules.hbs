@@ -1,0 +1,101 @@
+<table id="schedules-table" class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th scope="col">{{I18n 'schedules-column-name'}}</th>
+        <th scope="col">{{I18n 'schedules-column-id'}}</th>
+        <th scope="col">{{I18n 'schedules-column-description'}}</th>
+        <th scope="col">{{I18n 'schedules-column-created'}}</th>
+        <th scope="col">{{I18n 'schedules-column-localtime'}}</th>
+        <th scope="col">{{I18n 'schedules-column-status'}}</th>
+        <th scope="col">{{I18n 'schedules-column-autodelete'}}</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each schedules}}
+        <tr>
+            <td>
+                <strong>{{name}}</strong>
+            </td>
+            <td>{{id}}</td>
+            <td>{{description}}</td>
+            <td>{{created}}</td>
+            <td>{{localTime}}</td>
+            <td>{{status}}</td>
+            <td>{{autoDelete}}</td>
+            <td>
+                <button id="edit-button-schedule-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'schedules-edit'}}</button>
+                <script>
+                    $('#edit-button-schedule-{{id}}').on('click', function() {
+                        $('#schedule-edit-modal-id').val('{{id}}');
+                        $('#schedule-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
+
+                        $('#schedule-edit-modal').modal('show');
+                    });
+                </script>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<script>
+    $('#schedules-table').DataTable({
+        pageLength: 50,
+        columnDefs: [
+            {
+                render: DataTable.render.datetime(),
+                targets: 3
+            },
+            {
+                render: function(data, type, row, meta) {
+                    if (type === 'display') {
+                        return `<span class="fas ${data === 'true' ? 'fa-check' : 'fa-xmark'}"></span>`;
+                    } else {
+                        return data;
+                    }
+                },
+                targets: 6
+            },
+            {
+                orderable: false,
+                targets: -1
+            }
+        ]
+    });
+</script>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="schedule-edit-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" id="schedule-edit-modal-label">{{I18n 'schedules-edit-modal-label'}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input id="schedule-edit-modal-id" type="hidden">
+                    <div class="form-group">
+                        <label for="schedule-edit-modal-name" class="control-label">{{I18n 'schedules-edit-modal-name'}}</label>
+                        <input type="text" class="form-control" id="schedule-edit-modal-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'schedules-edit-modal-close'}}</button>
+                <button type="button" class="btn btn-primary text-left" id="schedule-edit-modal-save" data-dismiss="modal">{{I18n 'schedules-edit-modal-save'}}</button>
+                <script>
+                    $('#schedule-edit-modal-save').click(function() {
+                        let id = $('#schedule-edit-modal-id').val();
+                        let name = $('#schedule-edit-modal-name').val();
+
+                        huE_schedules.save({
+                            id: id,
+                            name: name
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

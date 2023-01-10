@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="../node_modules/@claviska/jquery-minicolors/jquery.minicolors.css">
 		<link rel="stylesheet" href="../node_modules/rangeslider.js/dist/rangeslider.css">
 		<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+		<link rel="stylesheet" href="../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
 		<!-- *** -->
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/onoffswitch.css">
@@ -31,6 +32,9 @@
 		<script src="../node_modules/rangeslider.js/dist/rangeslider.js"></script>
 		<script src="../node_modules/handlebars/dist/handlebars.js"></script>
 		<script src="../node_modules/sortablejs/Sortable.js"></script>
+		<script src="../node_modules/luxon/build/global/luxon.js"></script>
+		<script src="../node_modules/datatables.net/js/jquery.dataTables.js"></script>
+		<script src="../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
 		<!-- *** -->
 		<script src="js/constants.js"></script>
 		<script src="js/common.js"></script>
@@ -43,6 +47,8 @@
 		<script src="js/groups.js"></script>
 		<script src="js/scenes.js"></script>
 		<script src="js/sensors.js"></script>
+		<script src="js/rules.js"></script>
+		<script src="js/schedules.js"></script>
 		<script src="js/about.js"></script>
 		<!-- *** -->
 		<script>
@@ -58,10 +64,18 @@
 						{id: 'groups',       label: $.i18n('tabs-groups'),       iconClass: 'fa fa-align-justify',    on_show: 'huE_groups.get()'      },
 						{id: 'scenes',       label: $.i18n('tabs-scenes'),       iconClass: 'fa fa-palette',          on_show: 'huE_scenes.get()'      },
 						{id: 'sensors',      label: $.i18n('tabs-sensors'),      iconClass: 'fa fa-thermometer-half', on_show: 'huE_sensors.get()'     },
+						{id: 'schedules',    label: $.i18n('tabs-schedules'),    iconClass: 'fa fa-clock',            on_show: 'huE_schedules.get()'   },
+						{id: 'rules',        label: $.i18n('tabs-rules'),        iconClass: 'fa fa-code-branch',      on_show: 'huE_rules.get()'       },
 						{id: 'about',        label: $.i18n('tabs-about'),        iconClass: 'fa fa-info',             on_show: 'huE_about.get()'       }
 					];
 
 					$('#main-content-tabs').html(Handlebars.compile(Handlebars.partials.navigation_tabs)({items: tabItems}));
+
+					for (let tabItem of tabItems) {
+						if (!(huE_common.store.get(`showTab.${tabItem.id}`, true))) {
+							$(`#${tabItem.id}`).hide();
+						}
+					}
 				});
 			});
 		</script>

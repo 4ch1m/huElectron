@@ -7,8 +7,9 @@
 		<!-- Group Item Collapsed -->
         <h5 id="heading-group-{{id}}" class="card-header mb-0">
             <a data-toggle="collapse" href="#collapse-group-{{id}}" class="collapsed d-block">
-                {{#getGroupIcon type class}}{{/getGroupIcon}}{{name}} <small><span class="badge badge-secondary">{{type}}</span> ({{I18n 'groups-id'}}: {{id}})</small>
+                {{#getGroupIcon type class}}{{/getGroupIcon}}{{name}} <small>({{I18n 'groups-id'}}: {{id}})</small>
                 <i class="fa fa-chevron-down pull-right"></i>
+                <span class="badge badge-secondary float-right">{{type}}</span>
             </a>
         </h5>
 
@@ -234,11 +235,13 @@
 							}
 						});
 
-						huE_groups.save({id: id,
-										 name: name,
-										 type: type,
-										 class: clazz,
-										 lightIds: lightIds});
+						huE_groups.save({
+                            id: id,
+                            name: name,
+                            type: type,
+                            class: clazz,
+                            lightIds: lightIds
+                        });
 					});
 				</script>
 			</div>

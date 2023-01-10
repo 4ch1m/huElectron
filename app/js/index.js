@@ -2,6 +2,43 @@ const {app, dialog, Menu, BrowserWindow, nativeImage} = require('electron');
 const store = new (require('electron-store'))();
 const index = __dirname + '/../index.html';
 
+let restartNotificationShown = false;
+
+let tabs = [];
+
+for (let tab of [
+	{id: 'quickactions', label: 'Quick-Actions'},
+	{id: 'bridges', label: 'Bridges'},
+	{id: 'users', label: 'Users'},
+	{id: 'lights', label: 'Lights'},
+	{id: 'groups', label: 'Groups'},
+	{id: 'scenes', label: 'Scenes'},
+	{id: 'sensors', label: 'Sensors'},
+	{id: 'schedules', label: 'Schedules'},
+	{id: 'rules', label: 'Rules'},
+	{id: 'about', label: 'About'}
+]) {
+	tabs.push({
+		label: `Show '${tab.label}'`,
+		type: 'checkbox',
+		checked: store.get(`showTab.${tab.id}`, true),
+		click: () => {
+			store.set(
+				`showTab.${tab.id}`,
+				!(store.get(`showTab.${tab.id}`, true))
+			);
+
+			if (!restartNotificationShown) {
+				dialog.showMessageBox({
+					type: 'info',
+					message: "Changing 'Appearance' settings requires an app restart to take effect."
+				});
+				restartNotificationShown = true;
+			}
+		}
+	})
+}
+
 const menuTemplate = [
 	{
 		label: 'Edit',
@@ -79,14 +116,23 @@ const menuTemplate = [
 		label: 'Settings',
 		submenu: [
 			{
+				label: 'Appearance',
+				submenu: tabs
+			},
+			{
+				type: 'separator'
+			},
+			{
 				label: 'Reset',
 				click: () => {
-					let options = {	type: 'question',
-									buttons: ['OK', 'Cancel'],
-									message: 'Do you really want to reset all stored settings?' };
+					let options = {
+						type: 'question',
+						buttons: ['OK', 'Cancel'],
+						message: 'Do you really want to reset all stored settings?'
+					};
 
-					let callback = function(buttonIndex) {
-						if (buttonIndex == 0) {
+					let callback = buttonIndex => {
+						if (buttonIndex === 0) {
 							store.clear();
 							mainWindow.loadFile(index);
 						}
@@ -97,7 +143,6 @@ const menuTemplate = [
 			}
 		]
 	}
-
 ];
 
 if (process.platform === 'darwin') {
@@ -271,10 +316,11 @@ app.on('activate', () => {
 });
 
 app.on('ready', () => {
+	store.set('appVersion', app.getVersion());
+	store.set('appSystemLocale', app.getSystemLocale());
+
 	let builtMenu = Menu.buildFromTemplate(menuTemplate);
 	Menu.setApplicationMenu(builtMenu);
 
 	mainWindow = createMainWindow();
 });
-
-store.set('appVersion', app.getVersion());

@@ -1,11 +1,12 @@
-<table class="table table-sm table-hover">
+<table id="scenes-table" class="table table-sm table-hover">
 	<thead>
         <tr>
             <th scope="col" class="text-nowrap">{{I18n 'scenes-column-name'}}</th>
             <th scope="col" class="text-nowrap">{{I18n 'scenes-column-owner'}}</th>
             <th scope="col" class="text-nowrap">{{I18n 'scenes-column-light-ids'}}</th>
             <th scope="col" class="text-nowrap">{{I18n 'scenes-column-locked'}}</th>
-            <th scope="col" colspan="2"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
 	</thead>
 	<tbody>
@@ -18,10 +19,7 @@
                 {{owner}}
             </td>
 			<td>
-                {{#each lightIds}}
-                    {{#unless @first}}, {{/unless}}
-                    {{this}}
-                {{/each}}
+                {{#each lightIds}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}
             </td>
             <td>
                 {{#ifCond locked true}}
@@ -66,6 +64,17 @@
 	{{/each}}
 	</tbody>
 </table>
+<script>
+    $('#scenes-table').DataTable({
+        pageLength: 50,
+        columnDefs: [
+            {
+                orderable: false,
+                targets: [-2, -1]
+            }
+        ]
+    });
+</script>
 
 <!-- Edit Scene Modal -->
 <div class="modal fade" id="scene-edit-modal" tabindex="-1" role="dialog">
@@ -111,9 +120,11 @@
                             }
                         });
 
-                        huE_scenes.save({id: id,
-                                         name: name,
-                                         lightIds: lightIds});
+                        huE_scenes.save({
+                            id: id,
+                            name: name,
+                            lightIds: lightIds
+                        });
                     });
                 </script>
             </div>
