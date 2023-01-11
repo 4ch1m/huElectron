@@ -54,14 +54,14 @@
                 </div>
             </div>
             <!-- QuickAction Button -->
-            {{#ifNotCond huE_target 'quickactions-group'}}
+            {{#if showQuickActionButton}}
             <div class="col-md-3">
                 <div class="text-center">
-                    <button id="favourite-button-{{huE_target}}-{{id}}" type="button" class="btn btn-secondary">
+                    <button id="quickaction-button-{{huE_target}}-{{id}}" type="button" class="btn btn-secondary">
                         <span class="fas fa-thumbtack"></span> {{I18n 'quickactions-save'}}
                     </button>
                     <script>
-                        $('#favourite-button-{{huE_target}}-{{id}}').click(function() {
+                        $('#quickaction-button-{{huE_target}}-{{id}}').click(function() {
                             $('#quickaction-modal-{{huE_target}}-{{id}}-name').val('{{name}}');
                             $('#quickaction-modal-{{huE_target}}-{{id}}').modal('show');
                         });
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            {{/ifNotCond}}
+            {{/if}}
         </div>
     </div>
 </div>

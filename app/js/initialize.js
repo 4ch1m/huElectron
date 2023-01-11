@@ -10,13 +10,6 @@
 		return options.inverse(this);
 	});
 
-	Handlebars.registerHelper('ifNotCond', (v1, v2, options) => {
-		if (v1 !== v2) {
-			return options.fn(this);
-		}
-		return options.inverse(this);
-	});
-
 	Handlebars.registerHelper('getPushlinkIcon', modelId => {
 		let pushlinkImage = PUSHLINK_MODEL_IDS_AND_IMAGES.get(modelId);
 
