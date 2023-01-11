@@ -22,12 +22,12 @@
                 {{#each lightIds}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}
             </td>
             <td>
-                {{#ifCond locked true}}
+                {{#if locked}}
                     {{I18n 'yes'}}
-                {{/ifCond}}
-                {{#ifCond locked false}}
+                {{/if}}
+                {{#unless locked}}
                     {{I18n 'no'}}
-                {{/ifCond}}
+                {{/unless}}
             </td>
 			<td>
                 <button id="edit-button-scene-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-edit'}}</button>
