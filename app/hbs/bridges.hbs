@@ -112,7 +112,7 @@
 <!-- Edit Button -->
 <button id="edit-button-bridge-{{connectedBridge.id}}" class="btn btn-lg btn-primary btn-block"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'bridges-edit'}}</button>
 <script>
-    $('#edit-button-bridge-{{connectedBridge.id}}').on('click', function() {
+    $('#edit-button-bridge-{{connectedBridge.id}}').on('click', () => {
         $('#bridge-edit-modal-id').val('{{connectedBridge.id}}');
         $('#bridge-edit-modal-name').val(huE_common.htmlDecode('{{connectedBridge.name}}'));
 
@@ -163,7 +163,7 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'bridges-edit-modal-close'}}</button>
 				<button type="button" class="btn btn-primary text-left" id="bridge-edit-modal-save" data-dismiss="modal">{{I18n 'bridges-edit-modal-save'}}</button>
 				<script>
-					$('#bridge-edit-modal-save').click(function() {
+					$('#bridge-edit-modal-save').click(() => {
 						let id = $('#bridge-edit-modal-id').val();
 						let name = $('#bridge-edit-modal-name').val();
 

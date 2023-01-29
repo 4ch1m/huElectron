@@ -23,6 +23,7 @@
 <script>
     $('#users-table').DataTable({
         pageLength: 50,
+        order: [[2, 'asc']],
         columnDefs: [
             {
                 render: DataTable.render.datetime(),

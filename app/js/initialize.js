@@ -81,6 +81,14 @@
 	$.get('hbs/partials/spinner.hbs', data => {
 		Handlebars.registerPartial('spinner', data);
 	}, 'html');
+
+	$.get('hbs/partials/light-details.hbs', data => {
+		Handlebars.registerPartial('light_details', data);
+	}, 'html');
+
+	$.get('hbs/partials/group-details.hbs', data => {
+		Handlebars.registerPartial('group_details', data);
+	}, 'html');
 })();
 
 (function initMinicolors() {

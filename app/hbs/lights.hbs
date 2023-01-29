@@ -1,223 +1,164 @@
-<div id="lights-accordion">
+<table id="lights-table" class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">{{I18n 'lights-column-id'}}</th>
+        <th scope="col">{{I18n 'lights-column-name'}}</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each lights}}
+        <tr>
+            <td class="text-center">
+                {{#getProductIcon modelId}}{{/getProductIcon}}
+            </td>
+            <td>{{id}}</td>
+            <td>
+                <strong>{{name}}</strong>
+            </td>
+            <td>
+                <!-- Control Modal-->
+                <div class="modal fade" id="light-control-modal-{{id}}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header modal-header-primary">
+                                <h5 class="modal-title" id="light-control-modal-label">{{I18n 'lights-control-modal-label'}}</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body" id="light-control-modal-body">
+                                {{> basic_actions
+                                        huE_target='light'
+                                        huE_methodHolder='huE_lights'
+                                        id=id
+                                        name=name
+                                        on=on
+                                        brightness=brightness
+                                        xy=xy
+                                        showQuickActionButton=true }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'lights-control-modal-close'}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="control-button-light-{{id}}" class="btn btn-sm btn-success"><span class="fas fa-sliders"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-control'}}</button>
+                <script>
+                    $('#control-button-light-{{id}}').click(() => {
+                        $('#light-control-modal-{{id}}').modal('show');
+                    });
+                </script>
+            </td>
+            <td>
+                <!-- Details Modal-->
+                <div class="modal fade" id="light-detail-modal-{{id}}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header modal-header-primary">
+                                <h5 class="modal-title" id="light-detail-modal-label">{{I18n 'lights-detail-modal-label'}}</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body" id="light-detail-modal-body">
+                                {{> light_details this }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'lights-detail-modal-close'}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="details-button-light-{{id}}" class="btn btn-sm btn-info"><span class="fas fa-info-circle"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-details'}}</button>
+                <script>
+                    $('#details-button-light-{{id}}').click(() => {
+                        $('#light-detail-modal-{{id}}').modal('show');
+                    });
+                </script>
+            </td>
+            <td>
+                <button id="edit-button-light-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-edit'}}</button>
+                <script>
+                    $('#edit-button-light-{{id}}').click(() => {
+                        $('#light-edit-modal-id').val('{{id}}');
+                        $('#light-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
+                        $('#light-edit-modal-alert').val('{{alert}}');
 
-{{#each lights}}
+                        $('#light-edit-modal').modal('show');
+                    });
+                </script>
+            </td>
+            <td>
+                <button id="delete-button-light-{{id}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-delete'}}</button>
+                <script>
+                    $('#delete-button-light-{{id}}').click(() => {
+                        huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-light'}}', () => {
+                            huE_lights.deleteById('{{id}}');
+                        });
+                    });
+                </script>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<script>
+    $('#lights-table').DataTable({
+        pageLength: 50,
+        order: [[1, 'asc']],
+        columnDefs: [
+            {
+                orderable: false,
+                targets: [-4, -3, -2, -1, 0]
+            }
+        ]
+    });
+</script>
 
-	<div class="card mb-2">
-
-		<!-- Light Item Collapsed -->
-        <h5 id="heading-light-{{id}}" class="card-header mb-0">
-            <a data-toggle="collapse" href="#collapse-light-{{id}}" class="collapsed d-block">
-                {{#getProductIcon modelId}}{{/getProductIcon}}{{name}} <small>({{I18n 'lights-id'}}: {{id}})</small>
-                <i class="fa fa-chevron-down pull-right"></i>
-            </a>
-        </h5>
-
-		<!-- Light Item Expanded -->
-		<div id="collapse-light-{{id}}" class="collapse" data-parent="#lights-accordion">
-			<div class="card-body">
-
-				<!-- Actions -->
-				{{> basic_actions
-						huE_target='light'
-						huE_methodHolder='huE_lights'
-						id=id
-					    name=name
-						on=on
-						brightness=brightness
-						xy=xy
-                        showQuickActionButton=true }}
-
-				<!-- Edit -->
-				<button id="edit-button-light-{{id}}" class="btn btn-lg btn-primary btn-block"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-edit'}}</button>
-				<script>
-					$('#edit-button-light-{{id}}').click(function() {
-						$('#light-settings-modal-id').val('{{id}}');
-						$('#light-settings-modal-name').val(huE_common.htmlDecode('{{name}}'));
-						$('#light-settings-modal-alert').val('{{alert}}');
-
-						$('#light-settings-modal').modal('show');
-					});
-				</script>
-
-				<br>
-
-				<!-- Delete -->
-				<button id="delete-button-light-{{id}}" class="btn btn-lg btn-danger btn-block"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-delete'}}</button>
-				<script>
-					$('#delete-button-light-{{id}}').click(function() {
-						let confirmationCallback = function() { huE_lights.deleteById('{{id}}') };
-						huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-light'}}', confirmationCallback);
-					});
-				</script>
-
-				<br>
-
-				<!-- Details -->
-				<button id="details-button-light-{{id}}" class="collapse-btn btn btn-md btn-block btn-info collapsed mb-2" data-toggle="collapse" data-target="#details-light-{{id}}">
-                    <span class="fas fa-info-circle"></span>&nbsp;&nbsp;&nbsp;{{I18n 'lights-details'}}
-                    <i class="fa fa-chevron-down pull-right"></i>
-                </button>
-
-				<!-- Details Expanded -->
-				<div id="details-light-{{id}}" class="collapse">
-
-					<h4><i>{{I18n 'lights-general'}}</i></h4>
-					<table class="table table-sm table-hover table-bordered">
-						<tr>
-							<td>{{I18n 'lights-column-id'}}</td>
-							<td>{{id}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-name'}}</td>
-							<td>{{name}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-type'}}</td>
-							<td>{{type}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-uniqueid'}}</td>
-							<td>{{uniqueId}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-manufacturer'}}</td>
-							<td>{{manufacturer}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-modelid'}}</td>
-							<td>{{modelId}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-softwareversion'}}</td>
-							<td>{{softwareVersion}}</td>
-						</tr>
-					</table>
-
-					<h4><i>{{I18n 'lights-state'}}</i></h4>
-					<table class="table table-sm table-hover table-bordered">
-						<tr>
-							<td>{{I18n 'lights-column-on'}}</td>
-							<td>{{on}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-reachable'}}</td>
-							<td>{{reachable}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-brightness'}}</td>
-							<td>{{brightness}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-colormode'}}</td>
-							<td>{{colorMode}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-hue'}}</td>
-							<td>{{hue}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-saturation'}}</td>
-							<td>{{saturation}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-xy'}}</td>
-							<td>{{xy.[0]}}, {{xy.[1]}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-colortemp'}}</td>
-							<td>{{colorTemp}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-alert'}}</td>
-							<td>{{alert}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-effect'}}</td>
-							<td>{{effect}}</td>
-						</tr>
-					</table>
-
-					<h4><i>{{I18n 'lights-model'}}</i></h4>
-					<table class="table table-sm table-hover table-bordered">
-						<tr>
-							<td>{{I18n 'lights-column-id'}}</td>
-							<td>{{model.id}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-manufacturer'}}</td>
-							<td>{{model.manufacturer}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-name'}}</td>
-							<td>{{model.name}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-type'}}</td>
-							<td>{{model.type}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-colorgamut'}}</td>
-							<td>{{model.colorGamut}}</td>
-						</tr>
-						<tr>
-							<td>{{I18n 'lights-column-friendsofhue'}}</td>
-							<td>{{model.friendsOfHue}}</td>
-						</tr>
-					</table>
-
-				</div>
-
-			</div>
-		</div>
-
-	</div>
-
-{{/each}}
-
-</div>
-
-<!-- Settings Modal -->
-<div class="modal fade" id="light-settings-modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header modal-header-primary">
-                <h5 class="modal-title" id="light-settings-modal-label">{{I18n 'lights-settings-modal-label'}}</h5>
+<!-- Edit Modal -->
+<div class="modal fade" id="light-edit-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" id="light-edit-modal-label">{{I18n 'lights-edit-modal-label'}}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-			</div>
-			<div class="modal-body">
-				<form>
-					<input id="light-settings-modal-id" type="hidden">
-					<div class="form-group">
-						<label for="light-settings-modal-name" class="control-label">{{I18n 'lights-settings-modal-name'}}</label>
-						<input type="text" class="form-control" id="light-settings-modal-name">
-					</div>
-					<div class="form-group">
-						<label for="light-settings-modal-alert">{{I18n 'lights-settings-modal-alert'}}</label>
-						<select class="form-control" id="light-settings-modal-alert">
-						{{#each lightAlerts}}
-							<option>{{this}}</option>
-						{{/each}}
-						</select>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'lights-settings-modal-close'}}</button>
-				<button type="button" class="btn btn-primary text-left" id="light-settings-modal-save" data-dismiss="modal">{{I18n 'lights-settings-modal-save'}}</button>
-				<script>
-					$('#light-settings-modal-save').click(function() {
-						let id = $('#light-settings-modal-id').val();
-						let name = $('#light-settings-modal-name').val();
-						let alert = $('#light-settings-modal-alert').val();
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input id="light-edit-modal-id" type="hidden">
+                    <div class="form-group">
+                        <label for="light-edit-modal-name" class="control-label">{{I18n 'lights-edit-modal-name'}}</label>
+                        <input type="text" class="form-control" id="light-edit-modal-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="light-edit-modal-alert">{{I18n 'lights-edit-modal-alert'}}</label>
+                        <select class="form-control" id="light-edit-modal-alert">
+                            {{#each lightAlerts}}
+                                <option>{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'lights-edit-modal-close'}}</button>
+                <button type="button" class="btn btn-primary text-left" id="light-edit-modal-save" data-dismiss="modal">{{I18n 'lights-edit-modal-save'}}</button>
+                <script>
+                    $('#light-edit-modal-save').click(() => {
+                        let id = $('#light-edit-modal-id').val();
+                        let name = $('#light-edit-modal-name').val();
+                        let alert = $('#light-edit-modal-alert').val();
 
-						huE_lights.save({
+                        huE_lights.save({
                             id: id,
                             name: name,
                             alert: alert
                         });
-					});
-				</script>
-			</div>
-		</div>
-	</div>
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
 </div>

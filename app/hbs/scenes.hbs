@@ -32,7 +32,7 @@
 			<td>
                 <button id="edit-button-scene-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-edit'}}</button>
                 <script>
-                    $('#edit-button-scene-{{id}}').on('click', function() {
+                    $('#edit-button-scene-{{id}}').on('click', () => {
                         let usedLightIds = [];
                         {{#each lightIds}}
                             usedLightIds.push('{{this}}');
@@ -42,9 +42,9 @@
                         $('#scene-edit-modal-id').val('{{id}}');
                         $('#scene-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
 
-                        $('#scene-edit-modal-available-lights :input').each(function() {
-                            let lightIdIsPartOfScene = usedLightIds.indexOf($(this).val()) != -1;
-                            $(this).attr("checked", lightIdIsPartOfScene);
+                        $('#scene-edit-modal-available-lights :input').each((index, element) => {
+                            let lightIdIsPartOfScene = usedLightIds.indexOf($(element).val()) !== -1;
+                            $(element).attr("checked", lightIdIsPartOfScene);
                         });
 
                         $('#scene-edit-modal').modal('show');
@@ -54,9 +54,10 @@
             <td>
                 <button id="delete-button-scene-{{id}}" class="btn btn-sm btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'scenes-delete'}}</button>
                 <script>
-                    $('#delete-button-scene-{{id}}').on('click', function() {
-                        let confirmationCallback = function() { huE_scenes.deleteById('{{id}}') };
-                        huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-scene'}}', confirmationCallback);
+                    $('#delete-button-scene-{{id}}').on('click', () => {
+                        huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-scene'}}', () => {
+                            huE_scenes.deleteById('{{id}}');
+                        });
                     });
                 </script>
             </td>
@@ -67,6 +68,7 @@
 <script>
     $('#scenes-table').DataTable({
         pageLength: 50,
+        order: [[1, 'asc']],
         columnDefs: [
             {
                 orderable: false,
@@ -97,7 +99,7 @@
                             <div class="card-body">
                                 {{#each availableLights}}
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="{{this.id}}">{{this.name}} <small>(ID: {{this.id}})</small></label>
+                                        <label><input type="checkbox" value="{{this.id}}">&nbsp;{{this.name}} <small>({{I18n 'lights-id'}}: {{this.id}})</small></label>
                                     </div>
                                 {{/each}}
                             </div>
@@ -109,14 +111,14 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'scenes-edit-modal-close'}}</button>
                 <button type="button" class="btn btn-primary text-left" id="scene-edit-modal-save" data-dismiss="modal">{{I18n 'scenes-edit-modal-save'}}</button>
                 <script>
-                    $('#scene-edit-modal-save').click(function() {
+                    $('#scene-edit-modal-save').click(() => {
                         let id = $('#scene-edit-modal-id').val();
                         let name = $('#scene-edit-modal-name').val();
                         let lightIds = [];
 
-                        $('#scene-edit-modal-available-lights :input').each(function() {
-                            if ($(this).prop('checked')) {
-                                lightIds.push($(this).val());
+                        $('#scene-edit-modal-available-lights :input').each((index, element) => {
+                            if ($(element).prop('checked')) {
+                                lightIds.push($(element).val());
                             }
                         });
 

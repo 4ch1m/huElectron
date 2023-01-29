@@ -1,0 +1,67 @@
+<h4><i>{{I18n 'groups-general'}}</i></h4>
+<table class="table table-sm table-hover table-bordered">
+    <tr>
+        <td>{{I18n 'groups-column-id'}}</td>
+        <td>{{id}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-name'}}</td>
+        <td>{{name}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-type'}}</td>
+        <td>{{type}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-class'}}</td>
+        <td>{{class}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-lightids'}}</td>
+        <td>{{#each lightIds}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}</td>
+    </tr>
+{{#if modelId}}
+    <tr>
+        <td>{{I18n 'groups-column-modelid'}}</td>
+        <td>{{modelId}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-uniqueid'}}</td>
+        <td>{{uniqueId}}</td>
+    </tr>
+{{/if}}
+</table>
+
+<h4><i>{{I18n 'groups-state'}}</i></h4>
+<table class="table table-sm table-hover table-bordered">
+    <tr>
+        <td>{{I18n 'groups-column-anyon'}}</td>
+        <td>{{anyOn}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-allon'}}</td>
+        <td>{{allOn}}</td>
+    </tr>
+</table>
+
+{{#if modelId}}
+<h4><i>{{I18n 'groups-model'}}</i></h4>
+<table class="table table-sm table-hover table-bordered">
+    <tr>
+        <td>{{I18n 'groups-column-id'}}</td>
+        <td>{{model.id}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-manufacturer'}}</td>
+        <td>{{model.manufacturer}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-name'}}</td>
+        <td>{{model.name}}</td>
+    </tr>
+    <tr>
+        <td>{{I18n 'groups-column-type'}}</td>
+        <td>{{model.type}}</td>
+    </tr>
+</table>
+{{/if}}

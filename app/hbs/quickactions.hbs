@@ -1,14 +1,16 @@
 <h4>{{I18n 'quickactions-alllights'}}</h4>
 
-<div>
-	{{> basic_actions
-			huE_target='quickactions-group'
-			huE_methodHolder='huE_groups'
-			id=group.id
-			on=group.anyOn
-			brightness=group.brightness
-			xy=group.xy
-            showQuickActionButton=false }}
+<div class="card mb-2">
+    <div class="card-header card-block">
+        {{> basic_actions
+                huE_target='quickactions-group'
+                huE_methodHolder='huE_groups'
+                id=group.id
+                on=group.anyOn
+                brightness=group.brightness
+                xy=group.xy
+                showQuickActionButton=false }}
+    </div>
 </div>
 
 {{#if quickActions.[0]}}
@@ -27,7 +29,7 @@
 			<td class="text-left">
 				<button id="quickaction-execute-{{id}}" class="btn btn-success"><span class="fas fa-play"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-execute'}}</button>
 				<script>
-					$('#quickaction-execute-{{id}}').click(function() {
+					$('#quickaction-execute-{{id}}').click(() => {
 						huE_quickActions.execute('{{target}}', '{{targetId}}', '{{on}}', '{{brightness}}', '{{color}}');
 					});
 				</script>
@@ -58,11 +60,11 @@
 			<td class="text-right">
 				<button id="quickaction-delete-{{id}}" class="btn btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-delete'}}</button>
 				<script>
-					$('#quickaction-delete-{{id}}').click(function() {
+					$('#quickaction-delete-{{id}}').click(() => {
 						huE_quickActions.deleteById('{{id}}');
 
 						let row = $('#quickaction-row-{{id}}');
-						row.hide('slow', function() {
+						row.hide('slow', () => {
 							row.remove();
 						});
 					});
@@ -78,10 +80,10 @@
 </table>
 <script>
     Sortable.create($("#quickActions").get(0), {
-        onEnd: function() {
+        onEnd: () => {
             huE_quickActions.delete();
 
-            $("pre[id^='quickaction-save-statement-']").each(function(index, element) {
+            $("pre[id^='quickaction-save-statement-']").each((index, element) => {
                 eval(element.textContent);
             });
         }});

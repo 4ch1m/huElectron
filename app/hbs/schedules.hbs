@@ -1,8 +1,8 @@
 <table id="schedules-table" class="table table-sm table-hover">
     <thead>
     <tr>
-        <th scope="col">{{I18n 'schedules-column-name'}}</th>
         <th scope="col">{{I18n 'schedules-column-id'}}</th>
+        <th scope="col">{{I18n 'schedules-column-name'}}</th>
         <th scope="col">{{I18n 'schedules-column-description'}}</th>
         <th scope="col">{{I18n 'schedules-column-created'}}</th>
         <th scope="col">{{I18n 'schedules-column-localtime'}}</th>
@@ -14,19 +14,19 @@
     <tbody>
     {{#each schedules}}
         <tr>
+            <td>{{id}}</td>
             <td>
                 <strong>{{name}}</strong>
             </td>
-            <td>{{id}}</td>
             <td>{{description}}</td>
             <td>{{created}}</td>
             <td>{{localTime}}</td>
             <td>{{status}}</td>
-            <td>{{autoDelete}}</td>
+            <td class="text-center">{{autoDelete}}</td>
             <td>
                 <button id="edit-button-schedule-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'schedules-edit'}}</button>
                 <script>
-                    $('#edit-button-schedule-{{id}}').on('click', function() {
+                    $('#edit-button-schedule-{{id}}').on('click', () => {
                         $('#schedule-edit-modal-id').val('{{id}}');
                         $('#schedule-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
 
@@ -41,13 +41,14 @@
 <script>
     $('#schedules-table').DataTable({
         pageLength: 50,
+        order: [[0, 'asc']],
         columnDefs: [
             {
                 render: DataTable.render.datetime(),
                 targets: 3
             },
             {
-                render: function(data, type, row, meta) {
+                render: (data, type, row, meta) => {
                     if (type === 'display') {
                         return `<span class="fas ${data === 'true' ? 'fa-check' : 'fa-xmark'}"></span>`;
                     } else {
@@ -85,7 +86,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'schedules-edit-modal-close'}}</button>
                 <button type="button" class="btn btn-primary text-left" id="schedule-edit-modal-save" data-dismiss="modal">{{I18n 'schedules-edit-modal-save'}}</button>
                 <script>
-                    $('#schedule-edit-modal-save').click(function() {
+                    $('#schedule-edit-modal-save').click(() => {
                         let id = $('#schedule-edit-modal-id').val();
                         let name = $('#schedule-edit-modal-name').val();
 

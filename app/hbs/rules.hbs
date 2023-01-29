@@ -1,8 +1,8 @@
 <table id="rules-table" class="table table-sm table-hover">
     <thead>
     <tr>
-        <th scope="col">{{I18n 'rules-column-name'}}</th>
         <th scope="col">{{I18n 'rules-column-id'}}</th>
+        <th scope="col">{{I18n 'rules-column-name'}}</th>
         <th scope="col">{{I18n 'rules-column-owner'}}</th>
         <th scope="col">{{I18n 'rules-column-lasttriggered'}}</th>
         <th scope="col">{{I18n 'rules-column-timestriggered'}}</th>
@@ -13,10 +13,10 @@
     <tbody>
     {{#each rules}}
         <tr>
+            <td>{{id}}</td>
             <td>
                 <strong>{{name}}</strong>
             </td>
-            <td>{{id}}</td>
             <td>{{owner}}</td>
             <td>{{lastTriggered}}</td>
             <td>{{timesTriggered}}</td>
@@ -24,7 +24,7 @@
             <td>
                 <button id="edit-button-rule-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'rules-edit'}}</button>
                 <script>
-                    $('#edit-button-rule-{{id}}').on('click', function() {
+                    $('#edit-button-rule-{{id}}').on('click', () => {
                         $('#rule-edit-modal-id').val('{{id}}');
                         $('#rule-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
 
@@ -39,6 +39,7 @@
 <script>
     $('#rules-table').DataTable({
         pageLength: 50,
+        order: [[0, 'asc']],
         columnDefs: [
             {
                 render: DataTable.render.datetime(),
@@ -73,7 +74,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'rules-edit-modal-close'}}</button>
                 <button type="button" class="btn btn-primary text-left" id="rule-edit-modal-save" data-dismiss="modal">{{I18n 'rules-edit-modal-save'}}</button>
                 <script>
-                    $('#rule-edit-modal-save').click(function() {
+                    $('#rule-edit-modal-save').click(() => {
                         let id = $('#rule-edit-modal-id').val();
                         let name = $('#rule-edit-modal-name').val();
 

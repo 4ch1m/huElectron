@@ -18,7 +18,7 @@
 			<td>
 				<button class="btn btn-primary" id="discovered-bridge-button-{{id}}">Connect</button>
 				<script>
-					$('#discovered-bridge-button-{{id}}').click(function() {
+					$('#discovered-bridge-button-{{id}}').click(() => {
 						// try to log in again with the selected bridge/ip
 						let tempClient = new huE_common.huejay.Client({
 							host: '{{ip}}',

@@ -2,8 +2,8 @@
 	<thead>
         <tr>
             <th scope="col"></th>
-            <th scope="col">{{I18n 'sensors-column-name'}}</th>
             <th scope="col">{{I18n 'sensors-column-id'}}</th>
+            <th scope="col">{{I18n 'sensors-column-name'}}</th>
             <th scope="col">{{I18n 'sensors-column-type'}}</th>
             <th scope="col">{{I18n 'sensors-column-model-id'}}</th>
             <th scope="col"></th>
@@ -15,16 +15,16 @@
 			<td class="text-center">
 				{{#getProductIcon modelId}}{{/getProductIcon}}
 			</td>
+            <td>{{id}}</td>
 			<td>
 				<strong>{{name}}</strong>
 			</td>
-			<td>{{id}}</td>
 			<td>{{type}}</td>
 			<td>{{modelId}}</td>
 			<td>
 				<button id="edit-button-sensor-{{id}}" class="btn btn-sm btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'sensors-edit'}}</button>
 				<script>
-					$('#edit-button-sensor-{{id}}').on('click', function() {
+					$('#edit-button-sensor-{{id}}').on('click', () => {
 						$('#sensor-edit-modal-id').val('{{id}}');
 						$('#sensor-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
 
@@ -39,6 +39,7 @@
 <script>
     $('#sensors-table').DataTable({
         pageLength: 50,
+        order: [[1, 'asc']],
         columnDefs: [
             {
                 orderable: false,
@@ -69,7 +70,7 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'sensors-edit-modal-close'}}</button>
 				<button type="button" class="btn btn-primary text-left" id="sensor-edit-modal-save" data-dismiss="modal">{{I18n 'sensors-edit-modal-save'}}</button>
 				<script>
-					$('#sensor-edit-modal-save').click(function() {
+					$('#sensor-edit-modal-save').click(() => {
 						let id = $('#sensor-edit-modal-id').val();
 						let name = $('#sensor-edit-modal-name').val();
 

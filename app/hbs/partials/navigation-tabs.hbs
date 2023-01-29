@@ -7,7 +7,7 @@
                         <strong><i class="{{iconClass}}"></i></strong>&nbsp;{{label}}
                     </a>
                     <script>
-                        $('#{{id}}').on('shown.bs.tab', function() {
+                        $('#{{id}}').on('shown.bs.tab', () => {
                             {{on_show}}
                         });
                     </script>

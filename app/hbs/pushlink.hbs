@@ -8,7 +8,7 @@
 		<div class="text-center">
 			<button class="btn btn-primary" id="pushlink-button">{{I18n 'pushlink-authenticate'}}</button>
 			<script>
-				$('#pushlink-button').click(function() {
+				$('#pushlink-button').click(() => {
 					huE_bridges.createUser('{{bridgeIp}}', '{{bridgeId}}');
 				});
 			</script>
