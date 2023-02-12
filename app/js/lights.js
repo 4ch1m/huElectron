@@ -79,9 +79,9 @@ let huE_lights = {
 	},
 
 	applyQuickAction(quickAction) {
-		huE_common.huejayClient.lights.getById(quickAction.id)
+		huE_common.huejayClient.lights.getById(quickAction.targetId)
 			.then(light => {
-				light.on = JSON.parse(quickAction.on.toLowerCase());
+				light.on = huE_common.parseBoolean(quickAction.on);
 				light.brightness = quickAction.brightness;
 				light.xy = huE_common.convertHexColorToXY(quickAction.color);
 

@@ -5,8 +5,8 @@
             <input type="checkbox" data-size="lg" id="onoffswitch-{{huE_target}}-{{id}}" {{#if on}}checked{{/if}}>
             <script>
                 $('#onoffswitch-{{huE_target}}-{{id}}').bootstrapToggle();
-                $('#onoffswitch-{{huE_target}}-{{id}}').change(() => {
-                    {{huE_methodHolder}}.switchOnOff({{id}}, $(this).is(':checked'));
+                $('#onoffswitch-{{huE_target}}-{{id}}').change({id: 'onoffswitch-{{huE_target}}-{{id}}'} , event => {
+                    {{huE_methodHolder}}.switchOnOff({{id}}, $(`#${event.data.id}`).is(':checked'));
                 });
             </script>
         </div>
@@ -16,8 +16,8 @@
         <div class="text-center">
             <input id="brightness-{{huE_target}}-{{id}}" type="range" min="0" max="254" step="1" value="{{brightness}}" />
             <script>
-                $('#brightness-{{huE_target}}-{{id}}').rangeslider({polyfill: false}).on('change', () => {
-                    {{huE_methodHolder}}.changeBrightness({{id}}, $(this).val());
+                $('#brightness-{{huE_target}}-{{id}}').rangeslider({polyfill: false}).change({id: 'brightness-{{huE_target}}-{{id}}'}, event => {
+                    {{huE_methodHolder}}.changeBrightness({{id}}, $(`#${event.data.id}`).val());
                 });
             </script>
         </div>
@@ -75,8 +75,8 @@
                                     <label for="quickaction-modal-{{huE_target}}-{{id}}-name" class="control-label">{{I18n 'quickactions-save-modal-name'}}</label>
                                     <input type="text" class="form-control" id="quickaction-modal-{{huE_target}}-{{id}}-name">
                                     <script>
-                                        $('#quickaction-modal-{{huE_target}}-{{id}}-name').on('change paste keyup', () => {
-                                            $('#quickaction-modal-{{huE_target}}-{{id}}-button').prop('disabled', !$(this).val());
+                                        $('#quickaction-modal-{{huE_target}}-{{id}}-name').on('change paste keyup', {id: 'quickaction-modal-{{huE_target}}-{{id}}-name'}, event => {
+                                            $('#quickaction-modal-{{huE_target}}-{{id}}-button').prop('disabled', !$(`#${event.data.id}`).val());
                                         });
                                     </script>
                                 </div>
@@ -91,14 +91,14 @@
                                 });
 
                                 $('#quickaction-modal-{{huE_target}}-{{id}}').submit(() => {
-                                    let name = $('#quickaction-modal-{{huE_target}}-{{id}}-name').val();
-                                    let target = '{{huE_target}}';
-                                    let targetId = '{{id}}';
-                                    let on = $('#onoffswitch-{{huE_target}}-{{id}}').is(':checked');
-                                    let brightness = $('#brightness-{{huE_target}}-{{id}}').val();
-                                    let color = $('#colorpicker-{{huE_target}}-{{id}}').val();
-
-                                    huE_quickActions.save(name, target, targetId, on, brightness, color);
+                                    huE_quickActions.save({
+                                        name: $('#quickaction-modal-{{huE_target}}-{{id}}-name').val(),
+                                        target: '{{huE_target}}',
+                                        targetId: '{{id}}',
+                                        on: $('#onoffswitch-{{huE_target}}-{{id}}').is(':checked'),
+                                        brightness: $('#brightness-{{huE_target}}-{{id}}').val(),
+                                        color: $('#colorpicker-{{huE_target}}-{{id}}').val()
+                                    });
                                 });
                             </script>
                         </div>

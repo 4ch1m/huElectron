@@ -26,24 +26,24 @@
                 <i class="fa fa-bars"></i>
             </td>
 			<!-- Execute Button -->
-			<td class="text-left">
+            <td class="text-center">
 				<button id="quickaction-execute-{{id}}" class="btn btn-success"><span class="fas fa-play"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-execute'}}</button>
 				<script>
 					$('#quickaction-execute-{{id}}').click(() => {
-						huE_quickActions.execute('{{target}}', '{{targetId}}', '{{on}}', '{{brightness}}', '{{color}}');
+						huE_quickActions.executeById('{{id}}');
 					});
 				</script>
 			</td>
 			<!-- Name -->
 			<td class="text-left">
-				<strong>{{name}}</strong>
+				<strong id="quickaction-name-{{id}}">{{name}}</strong>
 			</td>
 			<!-- ON/OFF Switch -->
 			<td class="text-center">
-				{{#if on}}
+				{{#if (parseBool on)}}
 					<i class="fa fa-toggle-on"></i>
 				{{/if}}
-				{{#unless on}}
+				{{#unless (parseBool on)}}
 					<i class="fa fa-toggle-off"></i>
 				{{/unless}}
 			</td>
@@ -56,23 +56,46 @@
 			<td class="text-center">
                 <i class="fa fa-lightbulb" style="font-size:24px;color:{{color}}"></i>
 			</td>
+            <!-- Rename Button -->
+            <td class="text-center">
+                <button id="quickaction-rename-{{id}}" class="btn btn-primary"><span class="fas fa-pencil-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-rename'}}</button>
+                <script>
+                    $('#quickaction-rename-{{id}}').click(() => {
+                        $('#quickactions-rename-modal-id').val('{{id}}');
+                        $('#quickactions-rename-modal-name').val(huE_common.htmlDecode('{{name}}'));
+
+                        $('#quickactions-rename-modal').modal('show');
+                    });
+                </script>
+            </td>
 			<!-- Delete Button -->
-			<td class="text-right">
+            <td class="text-center">
 				<button id="quickaction-delete-{{id}}" class="btn btn-danger"><span class="fas fa-trash-alt"></span>&nbsp;&nbsp;&nbsp;{{I18n 'quickactions-delete'}}</button>
 				<script>
 					$('#quickaction-delete-{{id}}').click(() => {
-						huE_quickActions.deleteById('{{id}}');
+                        huE_common.showConfirmation('{{I18n 'confirmation-label-delete-confirmation'}}', '{{I18n 'confirmation-msg-delete-quickaction'}}', () => {
+                            huE_quickActions.deleteById('{{id}}');
 
-						let row = $('#quickaction-row-{{id}}');
-						row.hide('slow', () => {
-							row.remove();
-						});
+                            let row = $('#quickaction-row-{{id}}');
+                            row.hide('slow', () => {
+                                row.remove();
+                            });
+                        });
 					});
 				</script>
 			</td>
             <!-- hidden save-command -->
             <td style="display: none">
-                <pre id="quickaction-save-statement-{{id}}">huE_quickActions.save('{{name}}', '{{target}}', '{{targetId}}', '{{on}}', '{{brightness}}', '{{color}}')</pre>
+                <pre id="quickaction-save-statement-{{id}}">
+                    huE_quickActions.save({
+                        name: '{{name}}',
+                        target: '{{target}}',
+                        targetId: '{{targetId}}',
+                        on: '{{on}}',
+                        brightness: '{{brightness}}',
+                        color: '{{color}}'
+                    });
+                </pre>
             </td>
 		</tr>
 	{{/each}}
@@ -81,7 +104,7 @@
 <script>
     Sortable.create($("#quickActions").get(0), {
         onEnd: () => {
-            huE_quickActions.delete();
+            huE_quickActions.deleteAll();
 
             $("pre[id^='quickaction-save-statement-']").each((index, element) => {
                 eval(element.textContent);
@@ -90,3 +113,44 @@
 </script>
 
 {{/if}}
+
+<!-- Rename Modal-->
+<div class="modal fade" id="quickactions-rename-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" id="quickactions-rename-modal-label">{{I18n 'quickactions-rename-modal-label'}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input id="quickactions-rename-modal-id" type="hidden">
+                    <div class="form-group">
+                        <label for="quickactions-rename-modal-name" class="control-label">{{I18n 'quickactions-rename-modal-name'}}</label>
+                        <input type="text" class="form-control" id="quickactions-rename-modal-name">
+                        <script>
+                            $('#quickactions-rename-modal-name').on('change paste keyup', () => {
+                                $('#quickactions-rename-modal-save').prop('disabled', !$('#quickactions-rename-modal-name').val());
+                            });
+                        </script>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{I18n 'quickactions-rename-modal-close'}}</button>
+                <button type="button" class="btn btn-primary text-left" id="quickactions-rename-modal-save" data-dismiss="modal">{{I18n 'quickactions-rename-modal-save'}}</button>
+                <script>
+                    $('#quickactions-rename-modal-save').click(() => {
+                        let quickActionId = $('#quickactions-rename-modal-id').val();
+                        let quickActionName = $('#quickactions-rename-modal-name').val();
+                        huE_quickActions.updateName(
+                                quickActionId,
+                                quickActionName
+                        );
+                        $(`#quickaction-name-${quickActionId}`).text(quickActionName);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

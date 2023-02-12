@@ -14,34 +14,24 @@ let huE_quickActions = {
 			});
 	},
 
-	save(name, target, targetId, on, brightness, color) {
-		let quickActions = [];
-
-		if (huE_common.store.has(STORE_KEYS.quickActions)) {
-			quickActions = huE_common.store.get(STORE_KEYS.quickActions);
-		}
-
-		let quickAction = {
-			id: huE_common.uuid(),
-			name: name,
-			target: target,
-			targetId: targetId,
-			on: on,
-			brightness: brightness,
-			color: color
-		};
-
-		quickActions.push(quickAction);
-
-		huE_common.store.set(STORE_KEYS.quickActions, quickActions);
-	},
-
 	getAll() {
 		if (huE_common.store.has(STORE_KEYS.quickActions)) {
 			return huE_common.store.get(STORE_KEYS.quickActions);
 		} else {
 			return [];
 		}
+	},
+
+	getById(id) {
+		for (let quickAction of this.getAll()) {
+			if (quickAction.id === id) {
+				return quickAction;
+			}
+		}
+	},
+
+	deleteAll() {
+		huE_common.store.delete(STORE_KEYS.quickActions);
 	},
 
 	deleteById(id) {
@@ -61,23 +51,47 @@ let huE_quickActions = {
 		}
 	},
 
-	execute(target, targetId, on, brightness, color) {
-		let quickAction = {
-			id: targetId,
-			on: on,
-			brightness: brightness,
-			color: color
-		};
+	save(quickAction) {
+		let quickActions = [];
 
-		if (target === 'light') {
-			huE_lights.applyQuickAction(quickAction);
+		if (huE_common.store.has(STORE_KEYS.quickActions)) {
+			quickActions = huE_common.store.get(STORE_KEYS.quickActions);
+		}
+
+		if (!quickAction.hasOwnProperty('id') || typeof quickAction.id === undefined) {
+			quickAction.id = huE_common.uuid();
+			quickActions.push(quickAction);
 		} else {
-			huE_groups.applyQuickAction(quickAction);
+			for (let i = 0; i < quickActions.length; i++) {
+				if (quickActions[i].id === quickAction.id) {
+					quickActions[i] = quickAction;
+					break;
+				}
+			}
+		}
+
+		huE_common.store.set(STORE_KEYS.quickActions, quickActions);
+	},
+
+	updateName(id, name) {
+		let quickAction = this.getById(id);
+
+		if (quickAction !== undefined) {
+			quickAction.name = name;
+			this.save(quickAction);
 		}
 	},
 
-	delete() {
-		huE_common.store.delete(STORE_KEYS.quickActions);
+	executeById(id) {
+		let quickAction = this.getById(id);
+
+		if (quickAction !== undefined) {
+			if (quickAction.target === 'light') {
+				huE_lights.applyQuickAction(quickAction);
+			} else {
+				huE_groups.applyQuickAction(quickAction);
+			}
+		}
 	}
 
 };

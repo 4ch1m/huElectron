@@ -59,9 +59,9 @@ let huE_groups = {
 	},
 
 	applyQuickAction(quickAction) {
-		huE_common.huejayClient.groups.getById(quickAction.id)
+		huE_common.huejayClient.groups.getById(quickAction.targetId)
 			.then(group => {
-				group.on = JSON.parse(quickAction.on.toLowerCase());
+				group.on = huE_common.parseBoolean(quickAction.on);
 				group.brightness = quickAction.brightness;
 				group.xy =  huE_common.convertHexColorToXY(quickAction.color);
 

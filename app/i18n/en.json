@@ -137,6 +137,11 @@
   "quickactions-save": "Save as Quick-Action",
   "quickactions-save-modal-title": "Save Quick-Action",
   "quickactions-save-modal-name": "Name:",
+  "quickactions-rename": "Rename",
+  "quickactions-rename-modal-label": "Rename Quick-Action",
+  "quickactions-rename-modal-name": "Name",
+  "quickactions-rename-modal-close": "Close",
+  "quickactions-rename-modal-save": "Save",
   "quickactions-delete": "Delete",
   "quickactions-execute": "Execute",
 
@@ -226,5 +231,6 @@
   "confirmation-label-delete-confirmation": "Delete Confirmation",
   "confirmation-msg-delete-group": "Really delete this group?",
   "confirmation-msg-delete-light": "Really delete this light?",
-  "confirmation-msg-delete-scene": "Really delete this scene?"
+  "confirmation-msg-delete-scene": "Really delete this scene?",
+  "confirmation-msg-delete-quickaction": "Really delete this Quick-Action?"
 }

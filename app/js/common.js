@@ -91,6 +91,10 @@ let huE_common = {
 		return [xyPoint.x, xyPoint.y];
 	},
 
+	parseBoolean(boolean) {
+		return (typeof boolean === 'string' || boolean instanceof String) ? boolean.toLowerCase() === 'true' : boolean;
+	},
+
 	openExternal(event, link) {
         event.preventDefault();
 		this.shell.openExternal(link);

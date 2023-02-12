@@ -50,7 +50,11 @@
 		return Math.round(brightnessValue / (MAX_BRIGHTNESS_VALUE / 100));
 	});
 
-    // -----------
+	Handlebars.registerHelper('parseBool', boolean => {
+		return huE_common.parseBoolean(boolean);
+	});
+
+	// -----------
     // HB-partials
     // -----------
 
