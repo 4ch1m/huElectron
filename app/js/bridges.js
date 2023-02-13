@@ -55,7 +55,9 @@ let huE_bridges = {
 		});
 
 		let user = new client.users.User;
-		user.deviceType = `${APP_BRIDGEUSER_DEVICETYPE}#${huE_common.os.hostname()}`;
+
+		// Note: deviceType has a max. length of 30 chars
+		user.deviceType = `${APP_BRIDGEUSER_DEVICETYPE_PREFIX}${huE_common.os.hostname().substring(0, 30 - APP_BRIDGEUSER_DEVICETYPE_PREFIX.length)}`;
 
 		client.users.create(user)
 			.then(user => {
