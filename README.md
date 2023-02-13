@@ -17,7 +17,7 @@
 
 ## Screenshots
 
-![screenshots](https://raw.githubusercontent.com/4ch1m/huElectron/master/screenshots/screenshots.gif)
+![screenshots](screenshots/screenshots.gif)
 
 ## Motivation
 
