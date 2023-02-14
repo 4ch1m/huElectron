@@ -1,7 +1,7 @@
 <h4>{{I18n 'quickactions-alllights'}}</h4>
 
 <div class="card mb-2">
-    <div class="card-header card-block">
+    <div class="card-header">
         {{> basic_actions
                 huE_target='quickactions-group'
                 huE_methodHolder='huE_groups'
@@ -144,8 +144,8 @@
                         let quickActionId = $('#quickactions-rename-modal-id').val();
                         let quickActionName = $('#quickactions-rename-modal-name').val();
                         huE_quickActions.updateName(
-                                quickActionId,
-                                quickActionName
+                            quickActionId,
+                            quickActionName
                         );
                         $(`#quickaction-name-${quickActionId}`).text(quickActionName);
                     });
