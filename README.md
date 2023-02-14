@@ -23,7 +23,7 @@
 
 While there are many mobile-apps available for the lighting system from _Philips_, only few "traditional" desktop-apps can be found.
 
-Since most of these desktop-apps are closed-source and only available for _Windows_ / _Mac_, I've decided to create an open-source app which will run on all popular systems; including Linux.
+Since most of these desktop-apps are closed-source and only available for _Windows_ / _Mac_, I've decided to create an open-source app which will run on all popular systems; including _Linux_.
 
 Also, this is my first _Electron_-app; so it served as some kind of playground for me. :wink:
 
@@ -41,7 +41,7 @@ The current feature-set includes:
   * (schedules)
   * (rules)
 * quick-actions (set state/color/brightness with one mouse-click) 
-* show detailed information about each light/group
+* show detailed information about each light, group, etc.
 
 ## ToDo
 
@@ -76,22 +76,22 @@ Prebuilt binaries for all target platforms can be found in the [releases](https:
   ```
 
 * Now either ...
-   * build/package the app for Linux, Mac, and Windows with
-	   ```
-	   npm run package
-	   ```
-	 (The freshly compiled binaries can then be found in the _dist_-folder.)
-   * or just start it right away with
-	   ```
-	   npm start
-	   ```
+  * build and **package** the app for Linux, Mac, and Windows with ...
+      ```
+      npm run package
+      ```
+    (The freshly compiled binaries can then be found in the _dist_-folder.)
+  * or just **start** it right away with ...
+      ```
+      npm start
+      ```
 
 ## Resources
 
 hue product icons (mostly) taken from (or based on) the official _Icon Pack_:  
 * [https://developers.meethue.com/develop/application-design-guidance/icon-pack](https://developers.meethue.com/develop/application-design-guidance/icon-pack) (login needed)
 
-Unfortunately this resource doesn't get updated by Philips anymore (the latest release is from 2019). :worried:
+Unfortunately this resource doesn't get updated by _Philips_ anymore (the latest release is from 2019). :worried:
 
 Additional icons pulled from:
 * [hass-hue-icons](https://github.com/arallsopp/hass-hue-icons)
