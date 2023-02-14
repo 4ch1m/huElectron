@@ -3,22 +3,6 @@
 	padding: 0;
 }
 
-.card-header .fa {
-	transition: .3s transform ease-in-out;
-}
-
-.card-header .collapsed .fa {
-	transform: rotate(90deg);
-}
-
-.collapse-btn .fa {
-	transition: .3s transform ease-in-out;
-}
-
-.collapse-btn.collapsed .fa {
-	transform: rotate(90deg);
-}
-
 .modal-header-success {
 	background-color: #5cb85c;
 }
