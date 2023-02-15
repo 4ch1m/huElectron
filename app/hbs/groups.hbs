@@ -93,8 +93,13 @@
                         $('#group-edit-modal-id').val('{{id}}');
                         $('#group-edit-modal-name').val(huE_common.htmlDecode('{{name}}'));
                         $('#group-edit-modal-type').val('{{type}}');
-                        $('#group-edit-modal-class').val('{{class}}');
-                        $('#group-edit-modal-class').prop('disabled', !('{{type}}' === GROUP_TYPES.room));
+
+                        let groupClass = $('#group-edit-modal-class');
+                        groupClass.val('{{class}}');
+                        groupClass.prop(
+                            'disabled',
+                            !('{{type}}' === GROUP_TYPES.room || '{{type}}' === GROUP_TYPES.zone)
+                        );
 
                         $('#group-edit-modal-available-lights :input').each((index, element) => {
                             let lightIdIsPartOfGroup = usedLightIds.indexOf($(element).val()) !== -1;
